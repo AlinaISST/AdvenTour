@@ -31,7 +31,18 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                VideoWidget(),
+                //VideoWidget(),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: SizedBox(
+                        child: Ink.image(image: AssetImage("assets/images/banner.png"),
+                    height: 300, width: 300, fit: BoxFit.cover,),
+                    ),
+                  ),
+                ),
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           const Text(
             "We have the best services available for you!",
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
             textAlign: TextAlign.center,
           ),
 

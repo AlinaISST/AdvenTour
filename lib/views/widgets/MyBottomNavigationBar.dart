@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import '../HomepageRedirect/AboutUs.dart';
-import '../MyHomePage.dart';
-
+import '../Home.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({Key? key, this.isHomePage }) : super(key: key);
+  const MyBottomNavigationBar({Key? key, this.isHomePage}) : super(key: key);
 
   final bool? isHomePage;
   @override
@@ -15,9 +13,8 @@ class MyBottomNavigationBar extends StatefulWidget {
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _currentIndex = 0;
 
-
-  void onTappedBar(int index){
-    setState((){
+  void onTappedBar(int index) {
+    setState(() {
       _currentIndex = index;
     });
   }
@@ -28,30 +25,36 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     /*if(BaseAppBar.provider.ProviderName.isNotEmpty) {
       unselectedColor = Colors.white;
     }*/
-    return  BottomNavigationBar(
+    return BottomNavigationBar(
       elevation: 20.0,
       backgroundColor: const Color(0xFF29395B),
-
       unselectedItemColor: unselectedColor,
       unselectedLabelStyle: TextStyle(color: unselectedColor),
-      selectedItemColor: Color(0xFFFFFFFF),
+      selectedItemColor: const Color(0xFFFFFFFF),
       iconSize: 24.0,
-
       currentIndex: _currentIndex,
       onTap: (value) {
         if (value == 0 && widget.isHomePage == null) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyHomePage(title: "AdvenTour")));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const Home(),
+            ),
+          );
         }
         if (value == 1) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutUs()));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AboutUs(),
+            ),
+          );
         }
       },
-
       items: <BottomNavigationBarItem>[
         const BottomNavigationBarItem(
           icon: SizedBox(
             height: 40,
-            child: Icon(Icons.home,
+            child: Icon(
+              Icons.home,
               color: Color(0xFFFFFFFF),
             ),
           ),
@@ -61,7 +64,8 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
         BottomNavigationBarItem(
           icon: SizedBox(
             height: 40,
-            child: Icon(Icons.info,
+            child: Icon(
+              Icons.info,
               color: unselectedColor,
             ),
           ),
@@ -72,5 +76,3 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     );
   }
 }
-
-

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../MyHomePage.dart';
+import '../Home.dart';
 import '../widgets/Helper.dart';
-
 
 class Newsletter extends StatelessWidget {
   const Newsletter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     final bool _isSmallScreen = MediaQuery.of(context).size.width < 600;
     return Center(
       child: Row(
@@ -28,28 +26,34 @@ class Newsletter extends StatelessWidget {
                   spacing: 20,
                   runSpacing: 20,
                   children: <Widget>[
-
-                    SizedBox(height: 10,),
-                    Text("Newsletter",
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Newsletter",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          fontSize: _isSmallScreen ? 14 : 24, fontWeight: FontWeight.bold, color: Color(0xFF000000)),
+                          fontSize: _isSmallScreen ? 14 : 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF000000)),
                     ),
-                    Text("Subscribe to get offers and latest updates every week!",
+                    Text(
+                      "Subscribe to get offers and latest updates every week!",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          fontSize: _isSmallScreen ? 10 : 18, fontWeight: FontWeight.normal, color: Color(0xFF000000)),
+                          fontSize: _isSmallScreen ? 10 : 18,
+                          fontWeight: FontWeight.normal,
+                          color: Color(0xFF000000)),
                     ),
-                    SizedBox(height: 10,),
-
+                    SizedBox(
+                      height: 10,
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-
           SizedBox(width: _isSmallScreen ? 2 : 450),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -73,7 +77,6 @@ class Newsletter extends StatelessWidget {
   }
 }
 
-
 class _FormContent extends StatefulWidget {
   const _FormContent({Key? key}) : super(key: key);
 
@@ -82,7 +85,6 @@ class _FormContent extends StatefulWidget {
 }
 
 class __FormContentState extends State<_FormContent> {
-
   bool _rememberMe = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -135,7 +137,12 @@ class __FormContentState extends State<_FormContent> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState?.validate() ?? false) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(title: "AdvenTour")));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Home(),
+                        ),
+                      );
                     }
                   },
                 ),
@@ -148,10 +155,6 @@ class __FormContentState extends State<_FormContent> {
     );
   }
 
-
   Widget _gaph() => const SizedBox(height: 13); // Sized Box for Height
   Widget _gapw() => const SizedBox(width: 20); // Sized Box for Width
-
-
-
 }

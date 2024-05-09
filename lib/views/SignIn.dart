@@ -1,14 +1,19 @@
+import 'package:provider/provider.dart';
+import 'package:she_masomo/Notifier/user.notifier.dart';
+import 'package:she_masomo/modal/user.dart';
+import 'package:she_masomo/views/Home.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'MyHomePage.dart';
+import 'Home.dart';
 import 'Register.dart';
 
 const List<Widget> consents = <Widget>[
   Text('Yes'),
   Text('No'),
 ];
-
 
 class SignIn extends StatelessWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -17,38 +22,30 @@ class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool _isSmallScreen = MediaQuery.of(context).size.width < 600;
     return Scaffold(
-        backgroundColor: const Color(0xFFFFFFFF),
-        body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Dialog(
-              insetPadding: const EdgeInsets.all(32.0),
-              alignment: Alignment.center,
-              elevation: 10,
-              child: Center(
-                child: _isSmallScreen
-                    ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    _Logo(),
-                    _FormContent(),
-                  ],
-                )
-                    : Container(
-                  padding: const EdgeInsets.all(32.0),
-                  constraints: const BoxConstraints(maxWidth: 800),
-
-                  child: Center(
-                    child: Row(
-                      children: const [
-                        Expanded(child: _Logo()),
-                        Expanded(
-                          child: Center(child: _FormContent()),
-                        ),
-                      ],
-                    ),
-                  ),),
+      backgroundColor: const Color(0xFFFFFFFF),
+      body: Container(
+        alignment: Alignment.center,
+        child: _isSmallScreen
+            ? const Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _Logo(),
+                  SizedBox(height: 30),
+                  _FormContent(),
+                ],
+              )
+            : const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _Logo(),
+                  SizedBox(width: 60),
+                  Center(
+                    child: _FormContent(),
+                  ),
+                ],
               ),
-            )));
+      ),
+    );
   }
 }
 
@@ -62,19 +59,23 @@ class _Logo extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(height: 15,),
-        Image.asset("assets/images/logo-black.png", width: _isSmallScreen ? 100 : 250, height: _isSmallScreen ? 100 : 250),
+        SizedBox(
+          height: 15,
+        ),
+        Image.asset("assets/images/logo-black.png",
+            width: _isSmallScreen ? 100 : 250,
+            height: _isSmallScreen ? 100 : 250),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            "Welcome to AdvenTour",
+            "Welcome to ExploreEra",
             textAlign: TextAlign.center,
             style: _isSmallScreen
                 ? Theme.of(context).textTheme.headline5
                 : Theme.of(context)
-                .textTheme
-                .headline4
-                ?.copyWith(color: const Color(0xFF333333)),
+                    .textTheme
+                    .headline4
+                    ?.copyWith(color: const Color(0xFF333333)),
           ),
         )
       ],
@@ -90,13 +91,16 @@ class _FormContent extends StatefulWidget {
 }
 
 class __FormContentState extends State<_FormContent> {
-
   bool _rememberMe = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final UserNotifier userNotifier =
+        Provider.of<UserNotifier>(context, listen: false);
     final bool _isSmallScreen = MediaQuery.of(context).size.width < 600;
     return Container(
       constraints: const BoxConstraints(maxWidth: 300),
@@ -109,6 +113,7 @@ class __FormContentState extends State<_FormContent> {
             children: [
               _gap(),
               TextFormField(
+                controller: emailController,
                 validator: (value) {
                   // add name
                   if (value == null || value.isEmpty) {
@@ -125,6 +130,7 @@ class __FormContentState extends State<_FormContent> {
               ),
               _gap(),
               TextFormField(
+                controller: passwordController,
                 validator: (value) {
                   // add name
                   if (value == null || value.isEmpty) {
@@ -141,27 +147,26 @@ class __FormContentState extends State<_FormContent> {
                 ),
               ),
               _gap(),
-              CheckboxListTile(
-                value: _rememberMe,
-                onChanged: (value) {
-                  if (value == null) return;
-                  setState(() {
-                    _rememberMe = value;
-                  });
-                },
-                title: const Text('Remember me'),
-                controlAffinity: ListTileControlAffinity.leading,
-                dense: true,
-                contentPadding: const EdgeInsets.all(0),
-              ),
-              _gap(),
+              // CheckboxListTile(
+              //   value: _rememberMe,
+              //   onChanged: (value) {
+              //     if (value == null) return;
+              //     setState(() {
+              //       _rememberMe = value;
+              //     });
+              //   },
+              //   title: const Text('Remember me'),
+              //   controlAffinity: ListTileControlAffinity.leading,
+              //   dense: true,
+              //   contentPadding: const EdgeInsets.all(0),
+              // ),
+              // _gap(),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF29395B),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(4),
                     ),
                   ),
                   child: const Padding(
@@ -170,29 +175,106 @@ class __FormContentState extends State<_FormContent> {
                       'Log In',
                       style: TextStyle(
                         fontSize: 16,
+                        // color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState?.validate() ?? false) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage(title: "AdvenTour")));
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const AlertDialog(
+                            content: LinearProgressIndicator(),
+                          );
+                        },
+                      );
+
+                      final String email = emailController.text;
+                      final String password = passwordController.text;
+
+                      final key = email.split('@')[0];
+
+                      final SharedPreferences sharedPref =
+                          await SharedPreferences.getInstance();
+                      final User user =
+                          userFromJson(sharedPref.getString(key)!);
+
+                      userNotifier.adduser(user);
+
+                      if (user.email == email) {
+                        if (user.password == password) {
+                          Navigator.pop(context);
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Login Successfull'),
+                            ),
+                          );
+
+                          Navigator.pushReplacement(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => const Home(),
+                            ),
+                          );
+                        } else {
+                          Navigator.pop(context);
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const AlertDialog(
+                                content: Text('Entered wrong password'),
+                              );
+                            },
+                          );
+                        }
+                      } else {
+                        Navigator.pop(context);
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const AlertDialog(
+                              content: Text('Entered wrong email'),
+                            );
+                          },
+                        );
+                      }
                     }
                   },
                 ),
               ),
               _gap(),
-              _gap(),
               Row(
-              children: [
-                  Expanded(child: Text("Don't have an account yet?", style: TextStyle(fontSize: 13), textAlign: TextAlign.center,)),
-                TextButton(onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
-                  },
-                    child: Text("Sign Up!", style: TextStyle(fontSize: 12, color: Color(0xFF29395B)), textAlign: TextAlign.center)),
-              ],
+                children: [
+                  const Expanded(
+                    child: Text(
+                      "Don't have an account yet?",
+                      style: TextStyle(fontSize: 13),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const Register(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Sign Up!",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF29395B),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
-
             ],
           ),
         ),
@@ -201,7 +283,4 @@ class __FormContentState extends State<_FormContent> {
   }
 
   Widget _gap() => const SizedBox(height: 13);
-
-
-
 }

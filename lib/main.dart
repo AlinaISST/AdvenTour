@@ -1,9 +1,10 @@
 import 'package:provider/provider.dart';
-import 'package:she_masomo/Provider/app.provider.dart';
-import 'package:she_masomo/views/SignIn.dart';
+import 'package:explore_era/Provider/app.provider.dart';
+import 'package:explore_era/Pages/SignIn.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

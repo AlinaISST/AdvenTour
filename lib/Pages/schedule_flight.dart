@@ -685,6 +685,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                           flightclass: flightClass,
                           userEmail: userNotifier.user.email,
                         );
+                        
                         flightNotifier.addFlightData(flight);
 
                         Timer(

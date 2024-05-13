@@ -14,6 +14,25 @@ class FlightNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<Flight> currentUserFlights = [];
+  void addCurrentUserFlights(Flight flight) {
+    currentUserFlights.add(flight);
+    notifyListeners();
+  }
+
+  void updateCurrentUserFlights(List<Flight> flights) {
+    currentUserFlights = flights;
+    notifyListeners();
+  }
+
+  void clearCurrentUserFlights(Flight flight) {
+    currentUserFlights
+        .removeWhere((element) => element.flightPrice == flight.flightPrice);
+    flightData
+        .removeWhere((element) => element.flightPrice == flight.flightPrice);
+    notifyListeners();
+  }
+
   String flightPassenger = '00';
   void addFlightPassenger(String flightPassenger) {
     this.flightPassenger = flightPassenger;

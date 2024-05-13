@@ -13,4 +13,21 @@ class NotificationNotifier extends ChangeNotifier {
         .removeWhere((element) => element.flightPrice == flight.flightPrice);
     notifyListeners();
   }
+
+  List<Flight> currentUserNotification = [];
+  void addCurrentUserNotification(Flight flight) {
+    currentUserNotification.add(flight);
+    notifyListeners();
+  }
+
+  void updateCurrentUserNotification(List<Flight> flights) {
+    currentUserNotification = flights;
+    notifyListeners();
+  }
+
+  void clearCurrentUserNotification(Flight flight) {
+    currentUserNotification
+        .removeWhere((element) => element.flightPrice == flight.flightPrice);
+    notifyListeners();
+  }
 }

@@ -14,20 +14,26 @@ class NotificationNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Flight> currentUserNotification = [];
-  void addCurrentUserNotification(Flight flight) {
-    currentUserNotification.add(flight);
+  int notificationCount = 0;
+  void updatedflightBooking(int notificationCount) {
+    this.notificationCount = notificationCount;
     notifyListeners();
   }
 
-  void updateCurrentUserNotification(List<Flight> flights) {
-    currentUserNotification = flights;
-    notifyListeners();
-  }
+  // List<Flight> currentUserNotification = [];
+  // void addCurrentUserNotification(Flight flight) {
+  //   currentUserNotification.add(flight);
+  //   notifyListeners();
+  // }
 
-  void clearCurrentUserNotification(Flight flight) {
-    currentUserNotification
-        .removeWhere((element) => element.flightPrice == flight.flightPrice);
-    notifyListeners();
-  }
+  // void updateCurrentUserNotification(List<Flight> flights) {
+  //   currentUserNotification = flights;
+  //   notifyListeners();
+  // }
+
+  // void clearCurrentUserNotification(Flight flight) {
+  //   currentUserNotification
+  //       .removeWhere((element) => element.flightPrice == flight.flightPrice);
+  //   notifyListeners();
+  // }
 }

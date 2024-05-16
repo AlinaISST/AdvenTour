@@ -39,7 +39,33 @@ class _MyHomeState extends State<MyHome> {
   String? selectedCountryLabel;
   String? departureCountryName;
   String? returnCountryName;
-  // List<Flight> currentUserNotifications = [];
+  List<Flight> currentUserFlights = [];
+  void addCurrentUserFlights(Flight flight) {
+    currentUserFlights.add(flight);
+  }
+
+  void updateCurrentUserFlights(List<Flight> flights) {
+    currentUserFlights = flights;
+  }
+
+  void clearCurrentUserFlights(Flight flight) {
+    currentUserFlights
+        .removeWhere((element) => element.flightPrice == flight.flightPrice);
+  }
+
+  List<Flight> currentUserNotification = [];
+  void addCurrentUserNotification(Flight flight) {
+    currentUserNotification.add(flight);
+  }
+
+  void updateCurrentUserNotification(List<Flight> flights) {
+    currentUserNotification = flights;
+  }
+
+  void clearCurrentUserNotification(Flight flight) {
+    currentUserNotification
+        .removeWhere((element) => element.flightPrice == flight.flightPrice);
+  }
 
   @override
   void initState() {
@@ -53,17 +79,14 @@ class _MyHomeState extends State<MyHome> {
     final UserNotifier userNotifier =
         Provider.of<UserNotifier>(context, listen: false);
 
-    final FlightNotifier flightNotifier =
-        Provider.of<FlightNotifier>(context, listen: false);
-
     Timer.periodic(
-      const Duration(minutes: 4),
+      const Duration(minutes: 3),
       (timer) {
-        if (flightNotifier.currentUserFlights.isNotEmpty) {
-          final randomIndex = flightNotifier.currentUserFlights.length == 1
+        if (currentUserFlights.isNotEmpty) {
+          final randomIndex = currentUserFlights.length == 1
               ? 0
-              : Random().nextInt(flightNotifier.currentUserFlights.length - 1);
-          Flight flight = flightNotifier.currentUserFlights[randomIndex];
+              : Random().nextInt(currentUserFlights.length - 1);
+          Flight flight = currentUserFlights[randomIndex];
           final flightPrice = int.parse(flight.flightPrice!.split(',').join());
           final int lowFarePrice = flightPrice - (flightPrice * 0.12).round();
           flight.lowFarePrice = lowFarePrice.toString();
@@ -71,8 +94,9 @@ class _MyHomeState extends State<MyHome> {
           final currentUserNotificationsss = notificationNotifier.notifications
               .where((element) => element.userEmail == userNotifier.user.email)
               .toList();
-          notificationNotifier
-              .updateCurrentUserNotification(currentUserNotificationsss);
+          updateCurrentUserNotification(currentUserNotificationsss);
+          notificationNotifier.notificationCount =
+              currentUserNotification.length;
           EmmailServiecs.sendEmail(
             email: userNotifier.user.email!,
             message:
@@ -106,30 +130,8 @@ class _MyHomeState extends State<MyHome> {
     final currentUserNotificationsss = notificationNotifier.notifications
         .where((element) => element.userEmail == userNotifier.user.email)
         .toList();
-    flightNotifier.updateCurrentUserFlights(currentUserFlights);
-    notificationNotifier
-        .updateCurrentUserNotification(currentUserNotificationsss);
-
-    // ignore: prefer_is_empty
-    if (currentUserFlights.length == 0) {
-      setState(() {
-        isVisibleFlights = false;
-      });
-    } else {
-      setState(() {
-        isVisibleFlights = true;
-      });
-    }
-    // ignore: prefer_is_empty
-    if (currentUserNotificationsss.length == 0) {
-      setState(() {
-        isVisibleNotifications = false;
-      });
-    } else {
-      setState(() {
-        isVisibleNotifications = true;
-      });
-    }
+    updateCurrentUserFlights(currentUserFlights);
+    updateCurrentUserNotification(currentUserNotificationsss);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -234,9 +236,9 @@ class _MyHomeState extends State<MyHome> {
                                                 height: 450,
                                                 width: 350,
                                                 child: ListView.builder(
-                                                  itemCount: notificationNotifier
-                                                      .currentUserNotification
-                                                      .length,
+                                                  itemCount:
+                                                      currentUserNotification
+                                                          .length,
                                                   itemBuilder:
                                                       (context, index) {
                                                     return Container(
@@ -274,8 +276,7 @@ class _MyHomeState extends State<MyHome> {
                                                               radius: 28,
                                                               backgroundColor:
                                                                   Colors.white,
-                                                              child: notificationNotifier
-                                                                          .currentUserNotification[
+                                                              child: currentUserNotification[
                                                                               index]
                                                                           .flightAirline ==
                                                                       'Emirates'
@@ -299,8 +300,7 @@ class _MyHomeState extends State<MyHome> {
                                                                     .center,
                                                             children: [
                                                               Text(
-                                                                notificationNotifier
-                                                                    .currentUserNotification[
+                                                                currentUserNotification[
                                                                         index]
                                                                     .flightAirline!,
                                                                 style:
@@ -317,8 +317,7 @@ class _MyHomeState extends State<MyHome> {
                                                               Row(
                                                                 children: [
                                                                   Text(
-                                                                    notificationNotifier
-                                                                        .currentUserNotification[
+                                                                    currentUserNotification[
                                                                             index]
                                                                         .flightFrom!,
                                                                     style: GoogleFonts
@@ -351,8 +350,7 @@ class _MyHomeState extends State<MyHome> {
                                                                       width:
                                                                           10),
                                                                   Text(
-                                                                    notificationNotifier
-                                                                        .currentUserNotification[
+                                                                    currentUserNotification[
                                                                             index]
                                                                         .flightTo!,
                                                                     style: GoogleFonts
@@ -373,8 +371,7 @@ class _MyHomeState extends State<MyHome> {
                                                           const SizedBox(
                                                               width: 10),
                                                           Text(
-                                                            notificationNotifier
-                                                                .currentUserNotification[
+                                                            currentUserNotification[
                                                                     index]
                                                                 .flightPrice!,
                                                             style: GoogleFonts
@@ -392,7 +389,7 @@ class _MyHomeState extends State<MyHome> {
                                                           const SizedBox(
                                                               width: 10),
                                                           Text(
-                                                            'Rs: ${notificationNotifier.currentUserNotification[index].lowFarePrice}',
+                                                            'Rs: ${currentUserNotification[index].lowFarePrice}',
                                                             style: GoogleFonts
                                                                 .raleway(
                                                               fontSize: 18,
@@ -419,14 +416,16 @@ class _MyHomeState extends State<MyHome> {
                                       ),
                                     ),
                                     Visibility(
-                                      visible: isVisibleNotifications,
+                                      visible: notificationNotifier
+                                              .notificationCount !=
+                                          0,
                                       child: CircleAvatar(
                                         backgroundColor: Colors.red.shade600,
                                         radius: 8,
                                         child: Center(
                                           child: Text(
                                             notificationNotifier
-                                                .currentUserNotification.length
+                                                .notificationCount
                                                 .toString(),
                                             style: GoogleFonts.raleway(
                                               fontSize: 12,
@@ -576,7 +575,7 @@ class _MyHomeState extends State<MyHome> {
                                       ),
                                     ),
                                     Visibility(
-                                      visible: isVisibleFlights,
+                                      visible: flightNotifier.flightBooking > 0,
                                       child: Positioned(
                                         top: 0,
                                         right: 0,
@@ -585,8 +584,7 @@ class _MyHomeState extends State<MyHome> {
                                           radius: 10,
                                           child: Center(
                                             child: Text(
-                                              flightNotifier
-                                                  .currentUserFlights.length
+                                              flightNotifier.flightBooking
                                                   .toString(),
                                               style: GoogleFonts.raleway(
                                                 fontSize: 12,

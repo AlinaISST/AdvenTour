@@ -4,6 +4,7 @@ import 'package:explore_era/Notifier/flight.notifier.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
 import 'package:explore_era/Pages/home.dart';
 import 'package:explore_era/Services/email.services.dart';
+import 'package:explore_era/Services/stringFormat.service.dart';
 import 'package:explore_era/modal/flight.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +23,29 @@ class ViewBooking extends StatefulWidget {
 class _ViewBookingState extends State<ViewBooking> {
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController cvvController = TextEditingController();
+  List<Flight> currentUserFlights = [];
+  void addCurrentUserFlights(Flight flight) {
+    currentUserFlights.add(flight);
+  }
+
+  void updateCurrentUserFlights(List<Flight> flights) {
+    currentUserFlights = flights;
+  }
+
+  void clearCurrentUserFlights(Flight flight) {
+    setState(() {
+      currentUserFlights
+          .removeWhere((element) => element.flightPrice == flight.flightPrice);
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    updateCurrentUserFlights();
+    updaateCurrentUserFlights();
   }
 
-  updateCurrentUserFlights() {
+  updaateCurrentUserFlights() {
     final FlightNotifier flightNotifier =
         Provider.of<FlightNotifier>(context, listen: false);
     final UserNotifier userNotifier =
@@ -38,7 +54,7 @@ class _ViewBookingState extends State<ViewBooking> {
     final flights = flightNotifier.flightData
         .where((element) => element.userEmail == userNotifier.user.email)
         .toList();
-    flightNotifier.updateCurrentUserFlights(flights);
+    updateCurrentUserFlights(flights);
   }
 
   @override
@@ -52,7 +68,12 @@ class _ViewBookingState extends State<ViewBooking> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF29395B),
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (context) => MyHome(),
+            ),
+          ),
           icon: const Icon(
             Icons.arrow_back_rounded,
             color: Colors.white,
@@ -68,21 +89,17 @@ class _ViewBookingState extends State<ViewBooking> {
         ),
       ),
       body: ListView.builder(
-        itemCount: flightNotifier.currentUserFlights.length,
+        itemCount: currentUserFlights.length,
         itemBuilder: (context, index) {
           final Flight flight = Flight(
-            flightAirline:
-                flightNotifier.currentUserFlights[index].flightAirline,
-            flightDepartureDate:
-                flightNotifier.currentUserFlights[index].flightDepartureDate,
-            flightFrom: flightNotifier.currentUserFlights[index].flightFrom,
-            flightPassenger:
-                flightNotifier.currentUserFlights[index].flightPassenger,
-            flightPrice: flightNotifier.currentUserFlights[index].flightPrice,
-            flightReturnDate:
-                flightNotifier.currentUserFlights[index].flightReturnDate,
-            flightTo: flightNotifier.currentUserFlights[index].flightTo,
-            flightclass: flightNotifier.currentUserFlights[index].flightclass,
+            flightAirline: currentUserFlights[index].flightAirline,
+            flightDepartureDate: currentUserFlights[index].flightDepartureDate,
+            flightFrom: currentUserFlights[index].flightFrom,
+            flightPassenger: currentUserFlights[index].flightPassenger,
+            flightPrice: currentUserFlights[index].flightPrice,
+            flightReturnDate: currentUserFlights[index].flightReturnDate,
+            flightTo: currentUserFlights[index].flightTo,
+            flightclass: currentUserFlights[index].flightclass,
           );
           return Container(
             height: 80,
@@ -108,8 +125,7 @@ class _ViewBookingState extends State<ViewBooking> {
                       child: CircleAvatar(
                         radius: 28,
                         backgroundColor: Colors.white,
-                        child: flightNotifier
-                                    .currentUserFlights[index].flightAirline ==
+                        child: currentUserFlights[index].flightAirline ==
                                 'Emirates'
                             ? Image.asset(
                                 'assets/images/emirates.png',
@@ -123,7 +139,7 @@ class _ViewBookingState extends State<ViewBooking> {
                     ),
                     const SizedBox(width: 15),
                     Text(
-                      flightNotifier.currentUserFlights[index].flightAirline!,
+                      currentUserFlights[index].flightAirline!,
                       style: GoogleFonts.raleway(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -142,8 +158,7 @@ class _ViewBookingState extends State<ViewBooking> {
                         children: [
                           Text(
                             DateFormat.yMMMEd().format(
-                              DateTime.parse(flightNotifier
-                                  .currentUserFlights[index]
+                              DateTime.parse(currentUserFlights[index]
                                   .flightDepartureDate!),
                             ),
                             style: GoogleFonts.raleway(
@@ -153,8 +168,7 @@ class _ViewBookingState extends State<ViewBooking> {
                             ),
                           ),
                           Text(
-                            flightNotifier
-                                .currentUserFlights[index].flightFrom!,
+                            currentUserFlights[index].flightFrom!,
                             style: GoogleFonts.raleway(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -196,8 +210,7 @@ class _ViewBookingState extends State<ViewBooking> {
                             size: 18,
                           ),
                           Text(
-                            flightNotifier
-                                .currentUserFlights[index].flightPassenger!,
+                            currentUserFlights[index].flightPassenger!,
                             style: GoogleFonts.raleway(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -235,8 +248,8 @@ class _ViewBookingState extends State<ViewBooking> {
                         children: [
                           Text(
                             DateFormat.yMMMEd().format(
-                              DateTime.parse(flightNotifier
-                                  .currentUserFlights[index].flightReturnDate!),
+                              DateTime.parse(
+                                  currentUserFlights[index].flightReturnDate!),
                             ),
                             style: GoogleFonts.raleway(
                               fontSize: 16,
@@ -245,7 +258,7 @@ class _ViewBookingState extends State<ViewBooking> {
                             ),
                           ),
                           Text(
-                            flightNotifier.currentUserFlights[index].flightTo!,
+                            currentUserFlights[index].flightTo!,
                             style: GoogleFonts.raleway(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -255,13 +268,37 @@ class _ViewBookingState extends State<ViewBooking> {
                         ],
                       ),
                       const SizedBox(width: 30),
-                      Text(
-                        'Rs: ${flightNotifier.currentUserFlights[index].flightPrice}',
-                        style: GoogleFonts.raleway(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            currentUserFlights[index].lowFarePrice != null
+                                ? 'Rs: ${StringService.addComma(currentUserFlights[index].lowFarePrice!)}'
+                                : 'Rs: ${currentUserFlights[index].flightPrice}',
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Visibility(
+                            visible:
+                                currentUserFlights[index].lowFarePrice != null,
+                            child: Row(
+                              children: [
+                                const SizedBox(width: 10),
+                                Text(
+                                  'Rs: ${currentUserFlights[index].flightPrice}',
+                                  style: GoogleFonts.poppins(
+                                    decoration: TextDecoration.lineThrough,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -522,7 +559,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                               EmmailServiecs.sendEmail(
                                                 email: userNotifier.user.email!,
                                                 message:
-                                                    'Your Flight Booking has been confirm and payment has been recieved successfully.\nThe total payment is Rs:${flightNotifier.currentUserFlights[index].flightPrice} Thankyou for choosing us!',
+                                                    'Your Flight Booking has been confirm and payment has been recieved successfully.\nThe total payment is Rs:${currentUserFlights[index].lowFarePrice != null ? currentUserFlights[index].lowFarePrice : currentUserFlights[index].flightPrice} Thankyou for choosing us!',
                                                 name:
                                                     userNotifier.user.userName!,
                                                 subject:
@@ -717,7 +754,18 @@ class _ViewBookingState extends State<ViewBooking> {
                     const SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        flightNotifier.clearCurrentUserFlights(flight);
+                        if (currentUserFlights.length == 1) {
+                          clearCurrentUserFlights(flight);
+                          flightNotifier.flightData.removeWhere((element) =>
+                              element.flightPrice == flight.flightPrice);
+                          flightNotifier.flightBooking = 0;
+                        } else {
+                          clearCurrentUserFlights(flight);
+                          flightNotifier.flightData.removeWhere((element) =>
+                              element.flightPrice == flight.flightPrice);
+                          flightNotifier.flightBooking =
+                              currentUserFlights.length;
+                        }
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(

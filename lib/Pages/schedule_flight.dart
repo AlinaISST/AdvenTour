@@ -685,14 +685,17 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                           flightclass: flightClass,
                           userEmail: userNotifier.user.email,
                         );
-                        
+
                         flightNotifier.addFlightData(flight);
+                        flightNotifier.updatedflightBooking(
+                            flightNotifier.flightData.length);
 
                         Timer(
                           const Duration(seconds: 2),
                           () {
                             Navigator.pop(context);
                             Navigator.pop(context);
+                            setState(() {});
                           },
                         );
                       },

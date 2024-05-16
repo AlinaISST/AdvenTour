@@ -257,7 +257,7 @@ class __FormContentState extends State<_FormContent> {
               decoration: const InputDecoration(
                 labelText: 'Phone Number',
                 hintText: 'Enter your phone number',
-                prefixIcon: Icon(Icons.location_on_outlined),
+                prefixIcon: Icon(Icons.phone_outlined),
                 border: OutlineInputBorder(),
               ),
             ),

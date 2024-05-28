@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:explore_era/modal/user.dart';
+import 'package:explore_era/Modal/user.dart';
 
 class UserNotifier extends ChangeNotifier {
   // ? all clauses list

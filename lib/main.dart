@@ -1,7 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:explore_era/Provider/app.provider.dart';
-import 'package:explore_era/Pages/SignIn.dart';
 import 'package:flutter/material.dart';
+import 'package:explore_era/Views/home_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       providers: AppProvider.providers,
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SignIn(),
+        home: MyHomePage(),
       ),
     );
   }

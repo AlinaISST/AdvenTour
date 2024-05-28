@@ -1,4 +1,4 @@
-import 'package:explore_era/modal/flight.dart';
+import 'package:explore_era/Modal/flight.dart';
 import 'package:flutter/cupertino.dart';
 
 class NotificationNotifier extends ChangeNotifier {

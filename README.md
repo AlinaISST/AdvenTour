@@ -1,6 +1,6 @@
-# explore_era
+# Explore Era
 
-A new Flutter project.
+Plan your trip with us and Travel around the world with the most affordable packages.
 
 ## Getting Started
 

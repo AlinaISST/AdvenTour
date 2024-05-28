@@ -1,7 +1,8 @@
+import 'package:explore_era/Views/agencies_list.dart';
 import 'package:explore_era/Views/home_page.dart';
 import 'package:explore_era/widgets/Helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+// import 'package:flutter/foundation.dart' show kIsWeb;
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor = Colors.indigo;
@@ -61,13 +62,8 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Helper.AppButton(
                   context,
                   "Packages",
-                  const MyHomePage(),
+                  const AgencieList(),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child:
-                    Helper.AppButton(context, "About Us", const MyHomePage()),
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),

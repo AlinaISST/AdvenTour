@@ -1,3 +1,4 @@
+import 'package:explore_era/Views/agencies_list.dart';
 import 'package:flutter/material.dart';
 import 'package:explore_era/Views/home_page.dart';
 
@@ -67,10 +68,10 @@ class HomepageItemsPackages extends StatelessWidget {
     return Material(
       color: const Color(0xFFFFFFFF),
       elevation: 10,
-      borderRadius: BorderRadius.circular(2),
+      borderRadius: BorderRadius.circular(10),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: InkWell(
-        splashColor: Colors.black26,
+        splashColor: Colors.black12,
         //onTap: (){},
         onTap: () {
           Navigator.push(
@@ -123,7 +124,21 @@ class HomepageItemsPackages extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 8,
+              height: 15,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AgencieList(),
+                  ),
+                );
+              },
+              child: Text("See More"),
+            ),
+            const SizedBox(
+              height: 15,
             ),
           ],
         ),

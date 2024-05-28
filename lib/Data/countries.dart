@@ -1,5 +1,6 @@
 class Countries {
   static List<Map<String, dynamic>> countries = [
+    {'name': 'Pakistan', 'dial_code': '+92', 'emoji': '🇵🇰', 'code': 'PK'},  
     {'name': 'Afghanistan', 'dial_code': '+93', 'emoji': '🇦🇫', 'code': 'AF'},
     {
       'name': 'Aland Islands',
@@ -338,7 +339,7 @@ class Countries {
     },
     {'name': 'Norway', 'dial_code': '+47', 'emoji': '🇳🇴', 'code': 'NO'},
     {'name': 'Oman', 'dial_code': '+968', 'emoji': '🇴🇲', 'code': 'OM'},
-    {'name': 'Pakistan', 'dial_code': '+92', 'emoji': '🇵🇰', 'code': 'PK'},
+    
     {'name': 'Palau', 'dial_code': '+680', 'emoji': '🇵🇼', 'code': 'PW'},
     {
       'name': 'Palestinian Territory, Occupied',

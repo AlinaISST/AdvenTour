@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:dotted_line/dotted_line.dart';
-import 'package:explore_era/Components/custom_card.dart';
+import 'package:explore_era/Widgets/custom_card.dart';
 import 'package:explore_era/Data/countries.dart';
 import 'package:explore_era/Notifier/flight.notifier.dart';
 import 'package:explore_era/Notifier/notification.notifier.dart';

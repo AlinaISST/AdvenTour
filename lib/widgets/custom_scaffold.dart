@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:explore_era/widgets/appbar.dart';
-import 'package:explore_era/widgets/drawer_screen.dart';
-import 'package:explore_era/widgets/bottom_navigation_bar.dart';
+import 'package:explore_era/Widgets/appbar.dart';
+import 'package:explore_era/Widgets/drawer_screen.dart';
+import 'package:explore_era/Widgets/bottom_navigation_bar.dart';
 
 class CustomScaffold extends StatelessWidget {
 

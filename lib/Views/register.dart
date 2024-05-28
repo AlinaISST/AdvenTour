@@ -197,8 +197,13 @@ class __FormContentState extends State<_FormContent> {
               controller: emailController,
               validator: (value) {
                 // add name
+                String pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regex = RegExp(pattern);
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
+                } else if (!regex.hasMatch(value)) {
+                  return 'You entered wrong email...';
                 }
                 return null;
               },

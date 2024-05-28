@@ -75,7 +75,7 @@ class HomepageItems extends StatelessWidget {
             const TextStyle(fontWeight: FontWeight.bold)),
         shape: WidgetStateProperty.resolveWith<OutlinedBorder>((_) {
           return RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(10),
           );
         }),
       ),

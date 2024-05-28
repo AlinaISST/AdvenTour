@@ -94,7 +94,7 @@ class HomepageItemsLocations extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: InkWell(
-        splashColor: Colors.black26,
+        splashColor: Colors.black12,
         //onTap: (){},
         onTap: () {
           Navigator.push(

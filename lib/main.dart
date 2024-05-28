@@ -20,8 +20,29 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: AppProvider.providers,
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            primary: const Color.fromRGBO(254, 206, 1, 1),
+            seedColor: Color.fromARGB(129, 254, 208, 1),
+          ),
+          textTheme: const TextTheme(
+            titleLarge: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+            titleMedium: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+            bodySmall: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         home: MyHomePage(),
       ),
     );

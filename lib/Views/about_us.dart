@@ -1,4 +1,4 @@
-import 'package:explore_era/widgets/custom_scaffold.dart';
+import 'package:explore_era/Widgets/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 

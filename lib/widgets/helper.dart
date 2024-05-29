@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class Helper{
 
-  static Color Activebuttoncolor = const Color(0xFF61708E); //0xFF9bc1c0
-  static Color Inactivebuttoncolor = const Color(0xFFa4a4a4);
+  static Color activebuttoncolor = const Color(0xFF61708E); //0xFF9bc1c0
+  static Color inactivebuttoncolor = const Color(0xFFa4a4a4);
 
-  static OutlinedButton CreateDataTableButton(BuildContext context,String Name,{ Function()? onPressed}) {
+  static OutlinedButton createDataTableButton(BuildContext context,String name,{ Function()? onPressed}) {
     return OutlinedButton(
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all<Color>(
-            Activebuttoncolor),
+            activebuttoncolor),
         foregroundColor: WidgetStateProperty.all<Color>(
             const Color(0xFFFFFFFF)),
         overlayColor: WidgetStateProperty.all<Color>(
@@ -24,11 +24,11 @@ class Helper{
             }),
       ),
       onPressed: onPressed ?? () => {},
-      child: Text(Name),
+      child: Text(name),
     );
   }
   // For creating Icon Buttons inside Data Table
-  static CreateIconButton(BuildContext context,IconData icon, { Function()? onPressed}) {
+  static createIconButton(BuildContext context,IconData icon, { Function()? onPressed}) {
     return IconButton(
 
       color: Colors.white,
@@ -38,7 +38,7 @@ class Helper{
     );
   }
 
-  static TextButton AppButton(BuildContext context,String Name, Widget page) {
+  static TextButton appButton(BuildContext context,String name, Widget page) {
     return TextButton(
 
       style: ButtonStyle(
@@ -56,14 +56,14 @@ class Helper{
         Navigator.push(context, MaterialPageRoute(builder: (context) => page),
         );
       },
-      child: Text(Name,
+      child: Text(name,
         style: const TextStyle(color: Color(0xFFFFFFFF),
             fontSize: 18, fontFamily: "Comfortaa"),
       ),
     );
   }
 
-  static TextButton VideoButton(BuildContext context,String Name, Widget page) {
+  static TextButton videoButton(BuildContext context,String name, Widget page) {
     return TextButton(
 
       style: ButtonStyle(
@@ -81,7 +81,7 @@ class Helper{
         Navigator.push(context, MaterialPageRoute(builder: (context) => page),
         );
       },
-      child: Text(Name,
+      child: Text(name,
         style: const TextStyle(color: Color(0xFF29395B),
             fontSize: 18, fontFamily: "Comfortaa"),
       ),
@@ -89,12 +89,12 @@ class Helper{
   }
 
   // For Buttons created outside the Data Table
-  static OutlinedButton CreateButton(BuildContext context, String Name, IconData icon, Widget page) {
+  static OutlinedButton createButton(BuildContext context, String name, IconData icon, Widget page) {
     return OutlinedButton(
 
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all<Color>(
-            Activebuttoncolor),
+            activebuttoncolor),
         foregroundColor: WidgetStateProperty.all<Color>(
             const Color(0xFF000000)),
         overlayColor: WidgetStateProperty.all<Color>(
@@ -114,28 +114,28 @@ class Helper{
         Navigator.push(context, MaterialPageRoute(builder: (context) => page),
         );
       },
-      child: Text(Name),
+      child: Text(name),
     );
   }
 
 }
 
 
+// ignore: must_be_immutable
 class HeadlineText extends StatelessWidget {
   final String text;
   TextAlign? align;
   double? fontsize = 20;
 
-  HeadlineText(this.text, {double? this.fontsize, TextAlign? this.align, Key? key})
-      : super(key: key);
+  HeadlineText(this.text, {this.fontsize, this.align, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: align == null ? TextAlign.center: align,
+      textAlign: align ?? TextAlign.center,
       style: TextStyle(
-        fontSize: fontsize == null ? 20: fontsize,
+        fontSize: fontsize ?? 20,
         fontWeight: FontWeight.w700,
         //color: Color(0xFF3e2723),
         color: Colors.black,

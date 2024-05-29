@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:explore_era/Model/flight.dart';
 import 'package:explore_era/Notifier/flight.notifier.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
-import 'package:explore_era/Views/ticket_booking.dart';
+import 'package:explore_era/Screens/ticket_booking.dart';
 import 'package:explore_era/Services/email.services.dart';
 import 'package:explore_era/Services/stringFormat.service.dart';
-import 'package:explore_era/Modal/flight.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -70,8 +69,8 @@ class _ViewBookingState extends State<ViewBooking> {
         leading: IconButton(
           onPressed: () => Navigator.push(
             context,
-            CupertinoPageRoute(
-              builder: (context) => MyHome(),
+            MaterialPageRoute(
+              builder: (context) => const TicketBooking(),
             ),
           ),
           icon: const Icon(
@@ -84,7 +83,7 @@ class _ViewBookingState extends State<ViewBooking> {
           style: GoogleFonts.raleway(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Color(0xffFFFFFF),
+            color: const Color(0xffFFFFFF),
           ),
         ),
       ),
@@ -128,7 +127,7 @@ class _ViewBookingState extends State<ViewBooking> {
                             children: [
                               CircleAvatar(
                                 radius: 25,
-                                backgroundColor: Color(0xffFFFFFF),
+                                backgroundColor: const Color(0xffFFFFFF),
                                 child:
                                     currentUserFlights[index].flightAirline ==
                                             'Emirates'
@@ -147,7 +146,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                 style: GoogleFonts.raleway(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                 ),
                               ),
                             ],
@@ -162,7 +161,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                 style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                 ),
                               ),
                               Visibility(
@@ -203,7 +202,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                 style: GoogleFonts.raleway(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                 ),
                               ),
                               Text(
@@ -211,7 +210,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                 style: GoogleFonts.raleway(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                 ),
                               ),
                             ],
@@ -252,7 +251,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                 style: GoogleFonts.raleway(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                 ),
                               ),
                             ],
@@ -291,7 +290,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                 style: GoogleFonts.raleway(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                 ),
                               ),
                               Text(
@@ -299,7 +298,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                 style: GoogleFonts.raleway(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                 ),
                               ),
                             ],
@@ -307,7 +306,7 @@ class _ViewBookingState extends State<ViewBooking> {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      Container(
+                      SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -320,7 +319,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                       return isSmallScreen
                                           ? AlertDialog(
                                               backgroundColor:
-                                                  Color(0xffFFFFFF),
+                                                  const Color(0xffFFFFFF),
                                               title: Text(
                                                 'Enter Payment Details',
                                                 style: GoogleFonts.raleway(
@@ -573,7 +572,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                         .user
                                                                         .email!,
                                                                 message:
-                                                                    'Your Flight Booking has been confirm and payment has been recieved successfully.\nThe total payment is Rs:${currentUserFlights[index].lowFarePrice != null ? currentUserFlights[index].lowFarePrice : currentUserFlights[index].flightPrice} Thankyou for choosing us!',
+                                                                    'Your Flight Booking has been confirm and payment has been recieved successfully.\nThe total payment is Rs:${currentUserFlights[index].lowFarePrice ?? currentUserFlights[index].flightPrice} Thankyou for choosing us!',
                                                                 name: userNotifier
                                                                     .user
                                                                     .userName!,
@@ -588,7 +587,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                     (context) {
                                                                   return AlertDialog(
                                                                     backgroundColor:
-                                                                        Color(
+                                                                        const Color(
                                                                             0xffFFFFFF),
                                                                     title: Text(
                                                                       'Payment Success!',
@@ -645,8 +644,8 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                             Navigator.pop(context);
                                                                             Navigator.pushReplacement(
                                                                               context,
-                                                                              CupertinoPageRoute(
-                                                                                builder: (context) => const MyHome(),
+                                                                              MaterialPageRoute(
+                                                                                builder: (context) => const TicketBooking(),
                                                                               ),
                                                                             );
                                                                           },
@@ -676,7 +675,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                               style: GoogleFonts.raleway(
                                                                                 fontSize: 20,
                                                                                 fontWeight: FontWeight.bold,
-                                                                                color: Color(0xffFFFFFF),
+                                                                                color: const Color(0xffFFFFFF),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -729,7 +728,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                             fontSize: 20,
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                           ),
                                                         ),
@@ -741,7 +740,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                             )
                                           : AlertDialog(
                                               backgroundColor:
-                                                  Color(0xffFFFFFF),
+                                                  const Color(0xffFFFFFF),
                                               title: Text(
                                                 'Enter Payment Details',
                                                 style: GoogleFonts.raleway(
@@ -1065,7 +1064,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                         .user
                                                                         .email!,
                                                                 message:
-                                                                    'Your Flight Booking has been confirm and payment has been recieved successfully.\nThe total payment is Rs:${currentUserFlights[index].lowFarePrice != null ? currentUserFlights[index].lowFarePrice : currentUserFlights[index].flightPrice} Thankyou for choosing us!',
+                                                                    'Your Flight Booking has been confirm and payment has been recieved successfully.\nThe total payment is Rs:${currentUserFlights[index].lowFarePrice ?? currentUserFlights[index].flightPrice} Thankyou for choosing us!',
                                                                 name: userNotifier
                                                                     .user
                                                                     .userName!,
@@ -1080,7 +1079,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                     (context) {
                                                                   return AlertDialog(
                                                                     backgroundColor:
-                                                                        Color(
+                                                                        const Color(
                                                                             0xffFFFFFF),
                                                                     title: Text(
                                                                       'Payment Success!',
@@ -1137,8 +1136,8 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                             Navigator.pop(context);
                                                                             Navigator.pushReplacement(
                                                                               context,
-                                                                              CupertinoPageRoute(
-                                                                                builder: (context) => const MyHome(),
+                                                                              MaterialPageRoute(
+                                                                                builder: (context) => const TicketBooking(),
                                                                               ),
                                                                             );
                                                                           },
@@ -1168,7 +1167,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                               style: GoogleFonts.raleway(
                                                                                 fontSize: 20,
                                                                                 fontWeight: FontWeight.bold,
-                                                                                color: Color(0xffFFFFFF),
+                                                                                color: const Color(0xffFFFFFF),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -1221,7 +1220,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                             fontSize: 20,
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                           ),
                                                         ),
@@ -1320,7 +1319,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                         style: GoogleFonts.raleway(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
-                                          color: Color(0xffFFFFFF),
+                                          color: const Color(0xffFFFFFF),
                                         ),
                                       ),
                                     ],
@@ -1373,7 +1372,7 @@ class _ViewBookingState extends State<ViewBooking> {
                             padding: const EdgeInsets.only(left: 20),
                             child: CircleAvatar(
                               radius: 28,
-                              backgroundColor: Color(0xffFFFFFF),
+                              backgroundColor: const Color(0xffFFFFFF),
                               child: currentUserFlights[index].flightAirline ==
                                       'Emirates'
                                   ? Image.asset(
@@ -1392,7 +1391,7 @@ class _ViewBookingState extends State<ViewBooking> {
                             style: GoogleFonts.raleway(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xffFFFFFF),
+                              color: const Color(0xffFFFFFF),
                             ),
                           ),
                         ],
@@ -1413,7 +1412,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                   style: GoogleFonts.raleway(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                                 Text(
@@ -1421,7 +1420,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                   style: GoogleFonts.raleway(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                               ],
@@ -1464,7 +1463,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                   style: GoogleFonts.raleway(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                               ],
@@ -1505,7 +1504,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                   style: GoogleFonts.raleway(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                                 Text(
@@ -1513,7 +1512,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                   style: GoogleFonts.raleway(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                               ],
@@ -1528,7 +1527,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                   style: GoogleFonts.poppins(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                                 Visibility(
@@ -1565,7 +1564,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                    backgroundColor: Color(0xffFFFFFF),
+                                    backgroundColor: const Color(0xffFFFFFF),
                                     title: Text(
                                       'Enter Payment Details',
                                       style: GoogleFonts.raleway(
@@ -1851,7 +1850,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                       email: userNotifier
                                                           .user.email!,
                                                       message:
-                                                          'Your Flight Booking has been confirm and payment has been recieved successfully.\nThe total payment is Rs:${currentUserFlights[index].lowFarePrice != null ? currentUserFlights[index].lowFarePrice : currentUserFlights[index].flightPrice} Thankyou for choosing us!',
+                                                          'Your Flight Booking has been confirm and payment has been recieved successfully.\nThe total payment is Rs:${currentUserFlights[index].lowFarePrice ?? currentUserFlights[index].flightPrice} Thankyou for choosing us!',
                                                       name: userNotifier
                                                           .user.userName!,
                                                       subject:
@@ -1863,7 +1862,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                       builder: (context) {
                                                         return AlertDialog(
                                                           backgroundColor:
-                                                              Color(0xffFFFFFF),
+                                                              const Color(0xffFFFFFF),
                                                           title: Text(
                                                             'Payment Success!',
                                                             style: GoogleFonts
@@ -1916,10 +1915,10 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                   Navigator
                                                                       .pushReplacement(
                                                                     context,
-                                                                    CupertinoPageRoute(
+                                                                    MaterialPageRoute(
                                                                       builder:
                                                                           (context) =>
-                                                                              const MyHome(),
+                                                                              const TicketBooking(),
                                                                     ),
                                                                   );
                                                                 },
@@ -1962,7 +1961,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
-                                                                      color: Color(
+                                                                      color: const Color(
                                                                           0xffFFFFFF),
                                                                     ),
                                                                   ),
@@ -2004,7 +2003,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                                 style: GoogleFonts.raleway(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.bold,
-                                                  color: Color(0xffFFFFFF),
+                                                  color: const Color(0xffFFFFFF),
                                                 ),
                                               ),
                                             ),
@@ -2099,7 +2098,7 @@ class _ViewBookingState extends State<ViewBooking> {
                                     style: GoogleFonts.raleway(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                     ),
                                   ),
                                 ],

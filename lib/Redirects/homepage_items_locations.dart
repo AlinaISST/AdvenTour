@@ -1,8 +1,8 @@
+import 'package:explore_era/Screens/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:explore_era/Views/home_page.dart';
 
 class HomepageItemsLocations extends StatelessWidget {
-  const HomepageItemsLocations({Key? key}) : super(key: key);
+  const HomepageItemsLocations({super.key});
 
   @override
   Widget build(BuildContext context) {

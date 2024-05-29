@@ -1,10 +1,9 @@
-import 'package:explore_era/Views/about_us.dart';
-import 'package:explore_era/Views/home_page.dart';
+import 'package:explore_era/Screens/about_us.dart';
+import 'package:explore_era/Screens/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MyBottomNavigationBar extends StatefulWidget {
-  const MyBottomNavigationBar({Key? key, this.isHomePage}) : super(key: key);
+  const MyBottomNavigationBar({super.key, this.isHomePage});
 
   final bool? isHomePage;
   @override

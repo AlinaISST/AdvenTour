@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Newsletter extends StatelessWidget {
-  const Newsletter({Key? key}) : super(key: key);
+  const Newsletter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,7 @@ class Newsletter extends StatelessWidget {
 }
 
 class _FormContent extends StatefulWidget {
-  const _FormContent({Key? key}) : super(key: key);
+  const _FormContent();
 
   @override
   State<_FormContent> createState() => __FormContentState();
@@ -182,5 +182,5 @@ class __FormContentState extends State<_FormContent> {
   }
 
   Widget _gaph() => const SizedBox(height: 13); // Sized Box for Height
-  Widget _gapw() => const SizedBox(width: 20); // Sized Box for Width
+// Sized Box for Width
 }

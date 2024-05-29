@@ -5,9 +5,11 @@ import 'package:explore_era/Widgets/bottom_navigation_bar.dart';
 
 class CustomScaffold extends StatelessWidget {
 
-  const CustomScaffold({Key? key, required this.body, required this.Title, this.isHomePage}) : super(key: key);
+  // ignore: non_constant_identifier_names
+  const CustomScaffold({super.key, required this.body, required this.Title, this.isHomePage});
 
   final Widget body;
+  // ignore: non_constant_identifier_names
   final String Title;
   final bool? isHomePage;
 

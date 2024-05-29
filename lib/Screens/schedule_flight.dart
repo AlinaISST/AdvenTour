@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:explore_era/Model/flight.dart';
 import 'package:explore_era/Notifier/flight.notifier.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
 import 'package:explore_era/Services/stringFormat.service.dart';
-import 'package:explore_era/Modal/flight.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -86,7 +86,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
           style: GoogleFonts.raleway(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Color(0xffFFFFFF),
+            color: const Color(0xffFFFFFF),
           ),
         ),
       ),
@@ -115,7 +115,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                           padding: const EdgeInsets.only(left: 20),
                           child: CircleAvatar(
                             radius: 26,
-                            backgroundColor: Color(0xffFFFFFF),
+                            backgroundColor: const Color(0xffFFFFFF),
                             child: flightNotifier.selectedAirLine == 'Emirates'
                                 ? Image.asset(
                                     'assets/images/emirates.png',
@@ -139,7 +139,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                   style: GoogleFonts.raleway(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                               ),
@@ -155,9 +155,9 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 50,
-                                    child: const DottedLine(
+                                    child: DottedLine(
                                       dashColor:
                                           Color.fromARGB(173, 179, 179, 179),
                                       lineThickness: 2,
@@ -168,11 +168,11 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                   ),
                                   Icon(
                                     Icons.timelapse_rounded,
-                                    color: Color(0xffFFFFFF).withOpacity(0.4),
+                                    color: const Color(0xffFFFFFF).withOpacity(0.4),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 50,
-                                    child: const DottedLine(
+                                    child: DottedLine(
                                       dashColor:
                                           Color.fromARGB(173, 179, 179, 179),
                                       lineThickness: 2,
@@ -186,7 +186,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                     style: GoogleFonts.raleway(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                     ),
                                   ),
                                 ],
@@ -201,7 +201,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                     // height: 250,
                     width: double.infinity,
                     margin: const EdgeInsets.only(top: 10),
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       gradient: const LinearGradient(
@@ -218,13 +218,13 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                         Row(
                           children: [
                             Expanded(
-                              child: Container(
+                              child: SizedBox(
                                 height: 70,
                                 child: Row(
                                   children: [
                                     CircleAvatar(
                                       radius: 30,
-                                      backgroundColor: Color(0xffFFFFFF),
+                                      backgroundColor: const Color(0xffFFFFFF),
                                       child: flightNotifier.selectedAirLine ==
                                               'Emirates'
                                           ? Image.asset(
@@ -248,7 +248,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           style: GoogleFonts.raleway(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                           ),
                                         ),
                                         const SizedBox(height: 5),
@@ -259,7 +259,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                               style: GoogleFonts.raleway(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w500,
-                                                color: Color(0xffFFFFFF),
+                                                color: const Color(0xffFFFFFF),
                                               ),
                                             ),
                                             const SizedBox(width: 10),
@@ -276,7 +276,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                   style: GoogleFonts.raleway(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w500,
-                                                    color: Color(0xffFFFFFF),
+                                                    color: const Color(0xffFFFFFF),
                                                   ),
                                                 ),
                                               ],
@@ -289,7 +289,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               height: 70,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(7),
@@ -313,7 +313,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                   style: GoogleFonts.raleway(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                                 const SizedBox(height: 60),
@@ -322,13 +322,13 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                   style: GoogleFonts.raleway(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
-                                    color: Color(0xffFFFFFF),
+                                    color: const Color(0xffFFFFFF),
                                   ),
                                 ),
                               ],
                             ),
                             const SizedBox(width: 10),
-                            Column(
+                            const Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 CircleAvatar(
@@ -366,7 +366,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           'From',
                                           style: GoogleFonts.raleway(
                                             fontSize: 12,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -375,7 +375,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           flightFrom,
                                           style: GoogleFonts.raleway(
                                             fontSize: 16,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -398,7 +398,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           'To',
                                           style: GoogleFonts.raleway(
                                             fontSize: 12,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -407,7 +407,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           flightTo,
                                           style: GoogleFonts.raleway(
                                             fontSize: 16,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -426,7 +426,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           'TO',
                                           style: GoogleFonts.raleway(
                                             fontSize: 12,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -435,7 +435,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           flightTo,
                                           style: GoogleFonts.raleway(
                                             fontSize: 16,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -458,7 +458,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           'From',
                                           style: GoogleFonts.raleway(
                                             fontSize: 12,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -467,7 +467,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           flightFrom,
                                           style: GoogleFonts.raleway(
                                             fontSize: 16,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -512,7 +512,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                 'Totol Price:',
                                 style: GoogleFonts.raleway(
                                   fontSize: 14,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -521,7 +521,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                 'Rs: $formattedPrice',
                                 style: GoogleFonts.raleway(
                                   fontSize: 16,
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -637,7 +637,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                               padding: const EdgeInsets.only(left: 20),
                               child: CircleAvatar(
                                 radius: 28,
-                                backgroundColor: Color(0xffFFFFFF),
+                                backgroundColor: const Color(0xffFFFFFF),
                                 child:
                                     flightNotifier.selectedAirLine == 'Emirates'
                                         ? Image.asset(
@@ -656,7 +656,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                               style: GoogleFonts.raleway(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xffFFFFFF),
+                                color: const Color(0xffFFFFFF),
                               ),
                             ),
                           ],
@@ -675,7 +675,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                     style: GoogleFonts.raleway(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                     ),
                                   ),
                                   Text(
@@ -683,7 +683,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                     style: GoogleFonts.raleway(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                     ),
                                   ),
                                 ],
@@ -713,7 +713,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                               ),
                               Icon(
                                 Icons.timelapse_rounded,
-                                color: Color(0xffFFFFFF).withOpacity(0.4),
+                                color: const Color(0xffFFFFFF).withOpacity(0.4),
                               ),
                               SizedBox(
                                 width: 150,
@@ -747,7 +747,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                     style: GoogleFonts.raleway(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                     ),
                                   ),
                                   Text(
@@ -755,7 +755,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                     style: GoogleFonts.raleway(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                     ),
                                   ),
                                 ],
@@ -799,7 +799,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                     children: [
                                       CircleAvatar(
                                         radius: 28,
-                                        backgroundColor: Color(0xffFFFFFF),
+                                        backgroundColor: const Color(0xffFFFFFF),
                                         child: flightNotifier.selectedAirLine ==
                                                 'Emirates'
                                             ? Image.asset(
@@ -817,7 +817,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                         style: GoogleFonts.raleway(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xffFFFFFF),
+                                          color: const Color(0xffFFFFFF),
                                         ),
                                       ),
                                     ],
@@ -835,7 +835,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           style: GoogleFonts.raleway(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                           ),
                                         ),
                                         Text(
@@ -844,7 +844,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           style: GoogleFonts.raleway(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w400,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                           ),
                                         ),
                                       ],
@@ -869,7 +869,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                             style: GoogleFonts.raleway(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
-                                              color: Color(0xffFFFFFF),
+                                              color: const Color(0xffFFFFFF),
                                             ),
                                           ),
                                           const SizedBox(width: 80),
@@ -885,7 +885,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                 style: GoogleFonts.raleway(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color(0xffFFFFFF),
+                                                  color: const Color(0xffFFFFFF),
                                                 ),
                                               ),
                                             ],
@@ -943,7 +943,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                           style: GoogleFonts
                                                               .raleway(
                                                             fontSize: 14,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                             fontWeight:
                                                                 FontWeight.w400,
@@ -956,7 +956,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                           style: GoogleFonts
                                                               .raleway(
                                                             fontSize: 20,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -991,7 +991,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                           style: GoogleFonts
                                                               .raleway(
                                                             fontSize: 14,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                             fontWeight:
                                                                 FontWeight.w400,
@@ -1004,7 +1004,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                           style: GoogleFonts
                                                               .raleway(
                                                             fontSize: 20,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -1033,7 +1033,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                           style: GoogleFonts
                                                               .raleway(
                                                             fontSize: 14,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                             fontWeight:
                                                                 FontWeight.w400,
@@ -1046,7 +1046,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                           style: GoogleFonts
                                                               .raleway(
                                                             fontSize: 20,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -1081,7 +1081,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                           style: GoogleFonts
                                                               .raleway(
                                                             fontSize: 14,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                             fontWeight:
                                                                 FontWeight.w400,
@@ -1094,7 +1094,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                                           style: GoogleFonts
                                                               .raleway(
                                                             fontSize: 20,
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xffFFFFFF),
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -1126,7 +1126,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                         'Price',
                                         style: GoogleFonts.raleway(
                                           fontSize: 14,
-                                          color: Color(0xffFFFFFF),
+                                          color: const Color(0xffFFFFFF),
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
@@ -1136,7 +1136,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                           'Rs $formattedPrice',
                                           style: GoogleFonts.raleway(
                                             fontSize: 30,
-                                            color: Color(0xffFFFFFF),
+                                            color: const Color(0xffFFFFFF),
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -1205,7 +1205,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                     'Totol Price:',
                                     style: GoogleFonts.raleway(
                                       fontSize: 16,
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
@@ -1214,7 +1214,7 @@ class _ScheduleFlightState extends State<ScheduleFlight> {
                                     'Rs: $formattedPrice',
                                     style: GoogleFonts.raleway(
                                       fontSize: 20,
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),

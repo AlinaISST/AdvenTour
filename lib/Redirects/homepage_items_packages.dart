@@ -1,9 +1,9 @@
-import 'package:explore_era/Views/agencies_list.dart';
+import 'package:explore_era/Screens/flight_fare_list.dart';
+import 'package:explore_era/Screens/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:explore_era/Views/home_page.dart';
 
 class HomepageItemsPackages extends StatelessWidget {
-  const HomepageItemsPackages({Key? key}) : super(key: key);
+  const HomepageItemsPackages({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -131,11 +131,11 @@ class HomepageItemsPackages extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AgencieList(),
+                    builder: (context) => const FlightFareList(),
                   ),
                 );
               },
-              child: Text("See More"),
+              child: const Text("See More"),
             ),
             const SizedBox(
               height: 15,

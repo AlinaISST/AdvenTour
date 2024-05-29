@@ -1,9 +1,9 @@
-import 'package:explore_era/Views/home_page.dart';
-import 'package:explore_era/Views/sign_in.dart';
+import 'package:explore_era/Screens/home_page.dart';
+import 'package:explore_era/Screens/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class DrawerScreen extends StatelessWidget {
-  const DrawerScreen({Key? key}) : super(key: key);
+  const DrawerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

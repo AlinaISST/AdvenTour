@@ -1,10 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:explore_era/Model/user.dart';
+import 'package:explore_era/Screens/sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
-import 'package:explore_era/Modal/user.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:explore_era/Views/sign_in.dart';
 
 const List<Widget> consents = <Widget>[
   Text('Yes'),
@@ -18,40 +19,40 @@ const List<Widget> sex = <Widget>[
 
 List<DropdownMenuItem<String>> get preferredDestination {
   List<DropdownMenuItem<String>> destination = [
-    DropdownMenuItem(child: Text('Kashmir'), value: "Kashmir"),
-    DropdownMenuItem(child: Text('Istanbul'), value: "Istanbul"),
-    DropdownMenuItem(child: Text('Paris'), value: "Paris"),
-    DropdownMenuItem(child: Text('Bali'), value: "Bali"),
-    DropdownMenuItem(child: Text('Dubai'), value: "Dubai"),
-    DropdownMenuItem(child: Text('Geneva'), value: "Geneva"),
-    DropdownMenuItem(child: Text('London'), value: "London"),
-    DropdownMenuItem(child: Text('Rome'), value: "Rome"),
+    const DropdownMenuItem(value: "Kashmir", child: Text('Kashmir')),
+    const DropdownMenuItem(value: "Istanbul", child: Text('Istanbul')),
+    const DropdownMenuItem(value: "Paris", child: Text('Paris')),
+    const DropdownMenuItem(value: "Bali", child: Text('Bali')),
+    const DropdownMenuItem(value: "Dubai", child: Text('Dubai')),
+    const DropdownMenuItem(value: "Geneva", child: Text('Geneva')),
+    const DropdownMenuItem(value: "London", child: Text('London')),
+    const DropdownMenuItem(value: "Rome", child: Text('Rome')),
   ];
   return destination;
 }
 
 List<DropdownMenuItem<String>> get preferredPackage {
   List<DropdownMenuItem<String>> package = [
-    DropdownMenuItem(child: Text('Bronze'), value: "Bronze"),
-    DropdownMenuItem(child: Text('Silver'), value: "Silver"),
-    DropdownMenuItem(child: Text('Gold'), value: "Gold"),
-    DropdownMenuItem(child: Text('Platinum'), value: "Platinum"),
+    const DropdownMenuItem(value: "Bronze", child: Text('Bronze')),
+    const DropdownMenuItem(value: "Silver", child: Text('Silver')),
+    const DropdownMenuItem(value: "Gold", child: Text('Gold')),
+    const DropdownMenuItem(value: "Platinum", child: Text('Platinum')),
   ];
   return package;
 }
 
 class Register extends StatelessWidget {
-  const Register({Key? key}) : super(key: key);
+  const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bool _isSmallScreen = MediaQuery.of(context).size.width < 600;
+    final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
 
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       body: Container(
         alignment: Alignment.center,
-        child: _isSmallScreen
+        child: isSmallScreen
             ? const SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -91,30 +92,30 @@ class Register extends StatelessWidget {
 }
 
 class _Logo extends StatelessWidget {
-  const _Logo({Key? key}) : super(key: key);
+  const _Logo();
 
   @override
   Widget build(BuildContext context) {
-    final bool _isSmallScreen = MediaQuery.of(context).size.width < 600;
+    final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Image.asset("assets/images/logo-black.png",
-            width: _isSmallScreen ? 50 : 150,
-            height: _isSmallScreen ? 50 : 150),
+            width: isSmallScreen ? 50 : 150,
+            height: isSmallScreen ? 50 : 150),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
             "Welcome to ExploreEra \n Registration Form",
             textAlign: TextAlign.center,
-            style: _isSmallScreen
+            style: isSmallScreen
                 ? Theme.of(context).textTheme.headlineMedium
                 : Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: Color(0xFF29395B), fontWeight: FontWeight.bold),
+                    color: const Color(0xFF29395B), fontWeight: FontWeight.bold),
           ),
         )
       ],
@@ -123,7 +124,7 @@ class _Logo extends StatelessWidget {
 }
 
 class _FormContent extends StatefulWidget {
-  const _FormContent({Key? key}) : super(key: key);
+  const _FormContent();
 
   @override
   State<_FormContent> createState() => __FormContentState();
@@ -184,7 +185,7 @@ class __FormContentState extends State<_FormContent> {
   Widget build(BuildContext context) {
     final UserNotifier userNotifier =
         Provider.of<UserNotifier>(context, listen: false);
-    final bool _isSmallScreen = MediaQuery.of(context).size.width < 600;
+    final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
     return Container(
       constraints: const BoxConstraints(maxWidth: 300),
       child: Form(
@@ -279,15 +280,15 @@ class __FormContentState extends State<_FormContent> {
                   });
                 },
                 borderRadius: const BorderRadius.all(Radius.circular(2)),
-                selectedBorderColor: Color(0xFFe65c00),
-                selectedColor: Color(0xFFe65c00),
-                fillColor: Color(0xFFfcf3e8),
+                selectedBorderColor: const Color(0xFFe65c00),
+                selectedColor: const Color(0xFFe65c00),
+                fillColor: const Color(0xFFfcf3e8),
                 color: Colors.black54,
                 constraints: BoxConstraints(
-                  minHeight: _isSmallScreen
+                  minHeight: isSmallScreen
                       ? MediaQuery.of(context).size.height * 0.04
                       : MediaQuery.of(context).size.height * 0.04,
-                  minWidth: _isSmallScreen
+                  minWidth: isSmallScreen
                       ? MediaQuery.of(context).size.height * 0.06
                       : MediaQuery.of(context).size.height * 0.08,
                 ),
@@ -373,7 +374,7 @@ class __FormContentState extends State<_FormContent> {
                       );
                       Navigator.pushReplacement(
                         context,
-                        CupertinoPageRoute(
+                        MaterialPageRoute(
                           builder: (context) => const SignIn(),
                         ),
                       );
@@ -396,6 +397,4 @@ class __FormContentState extends State<_FormContent> {
   }
 
   Widget _gap() => const SizedBox(height: 13);
-
-  Widget _gapList() => SizedBox(height: 2);
 }

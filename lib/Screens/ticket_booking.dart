@@ -2,30 +2,30 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:dotted_line/dotted_line.dart';
+import 'package:explore_era/Model/flight.dart';
+import 'package:explore_era/Screens/schedule_flight.dart';
+import 'package:explore_era/Screens/sign_in.dart';
+import 'package:explore_era/Screens/view_booking.dart';
 import 'package:explore_era/Widgets/custom_card.dart';
 import 'package:explore_era/Data/countries.dart';
 import 'package:explore_era/Notifier/flight.notifier.dart';
 import 'package:explore_era/Notifier/notification.notifier.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
-import 'package:explore_era/Views/schedule_flight.dart';
-import 'package:explore_era/Views/view_booking.dart';
 import 'package:explore_era/Services/email.services.dart';
-import 'package:explore_era/Modal/flight.dart';
-import 'package:explore_era/Views/sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class MyHome extends StatefulWidget {
-  const MyHome({super.key});
+class TicketBooking extends StatefulWidget {
+  const TicketBooking({super.key});
 
   @override
-  State<MyHome> createState() => _MyHomeState();
+  State<TicketBooking> createState() => _TicketBookingState();
 }
 
-class _MyHomeState extends State<MyHome> {
+class _TicketBookingState extends State<TicketBooking> {
   final DateTime firstDate = DateTime(1990);
   final DateTime lastDate = DateTime(2026);
   bool isVisibleFlights = false;
@@ -105,8 +105,10 @@ class _MyHomeState extends State<MyHome> {
             name: userNotifier.user.userName!,
             subject: 'Exclusive Deal: Grab Your Flight Ticket at a Lower Fare!',
           );
+          // ignore: avoid_print
           print('Notification Send');
         } else {
+          // ignore: avoid_print
           print('Notification Not Send');
         }
       },
@@ -151,7 +153,7 @@ class _MyHomeState extends State<MyHome> {
                       Container(
                         height: screenHeight,
                         width: double.infinity,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: const BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
@@ -186,7 +188,7 @@ class _MyHomeState extends State<MyHome> {
                                         style: GoogleFonts.raleway(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xffFFFFFF),
+                                          color: const Color(0xffFFFFFF),
                                         ),
                                       ),
                                     ],
@@ -269,7 +271,7 @@ class _MyHomeState extends State<MyHome> {
                                                                           radius:
                                                                               20,
                                                                           backgroundColor:
-                                                                              Color(0xffFFFFFF),
+                                                                              const Color(0xffFFFFFF),
                                                                           child: currentUserNotification[index].flightAirline == 'Emirates'
                                                                               ? Image.asset(
                                                                                   'assets/images/emirates.png',
@@ -295,7 +297,7 @@ class _MyHomeState extends State<MyHome> {
                                                                             style:
                                                                                 GoogleFonts.raleway(
                                                                               fontSize: 14,
-                                                                              color: Color(0xffFFFFFF),
+                                                                              color: const Color(0xffFFFFFF),
                                                                               fontWeight: FontWeight.w400,
                                                                             ),
                                                                           ),
@@ -305,7 +307,7 @@ class _MyHomeState extends State<MyHome> {
                                                                                 currentUserNotification[index].flightFrom!,
                                                                                 style: GoogleFonts.raleway(
                                                                                   fontSize: 12,
-                                                                                  color: Color(0xffFFFFFF),
+                                                                                  color: const Color(0xffFFFFFF),
                                                                                   fontWeight: FontWeight.w400,
                                                                                 ),
                                                                               ),
@@ -323,7 +325,7 @@ class _MyHomeState extends State<MyHome> {
                                                                                 currentUserNotification[index].flightTo!,
                                                                                 style: GoogleFonts.raleway(
                                                                                   fontSize: 12,
-                                                                                  color: Color(0xffFFFFFF),
+                                                                                  color: const Color(0xffFFFFFF),
                                                                                   fontWeight: FontWeight.w400,
                                                                                 ),
                                                                               ),
@@ -355,7 +357,7 @@ class _MyHomeState extends State<MyHome> {
                                                                             style:
                                                                                 GoogleFonts.raleway(
                                                                               fontSize: 16,
-                                                                              color: Color(0xffFFFFFF),
+                                                                              color: const Color(0xffFFFFFF),
                                                                               fontWeight: FontWeight.bold,
                                                                             ),
                                                                           ),
@@ -435,7 +437,7 @@ class _MyHomeState extends State<MyHome> {
                                                                           radius:
                                                                               28,
                                                                           backgroundColor:
-                                                                              Color(0xffFFFFFF),
+                                                                              const Color(0xffFFFFFF),
                                                                           child: currentUserNotification[index].flightAirline == 'Emirates'
                                                                               ? Image.asset(
                                                                                   'assets/images/emirates.png',
@@ -458,7 +460,7 @@ class _MyHomeState extends State<MyHome> {
                                                                             style:
                                                                                 GoogleFonts.raleway(
                                                                               fontSize: 16,
-                                                                              color: Color(0xffFFFFFF),
+                                                                              color: const Color(0xffFFFFFF),
                                                                               fontWeight: FontWeight.w400,
                                                                             ),
                                                                           ),
@@ -468,7 +470,7 @@ class _MyHomeState extends State<MyHome> {
                                                                                 currentUserNotification[index].flightFrom!,
                                                                                 style: GoogleFonts.raleway(
                                                                                   fontSize: 14,
-                                                                                  color: Color(0xffFFFFFF),
+                                                                                  color: const Color(0xffFFFFFF),
                                                                                   fontWeight: FontWeight.w400,
                                                                                 ),
                                                                               ),
@@ -486,7 +488,7 @@ class _MyHomeState extends State<MyHome> {
                                                                                 currentUserNotification[index].flightTo!,
                                                                                 style: GoogleFonts.raleway(
                                                                                   fontSize: 14,
-                                                                                  color: Color(0xffFFFFFF),
+                                                                                  color: const Color(0xffFFFFFF),
                                                                                   fontWeight: FontWeight.w400,
                                                                                 ),
                                                                               ),
@@ -522,7 +524,7 @@ class _MyHomeState extends State<MyHome> {
                                                                           fontSize:
                                                                               18,
                                                                           color:
-                                                                              Color(0xffFFFFFF),
+                                                                              const Color(0xffFFFFFF),
                                                                           fontWeight:
                                                                               FontWeight.bold,
                                                                         ),
@@ -560,7 +562,7 @@ class _MyHomeState extends State<MyHome> {
                                                         .toString(),
                                                     style: GoogleFonts.raleway(
                                                       fontSize: 12,
-                                                      color: Color(0xffFFFFFF),
+                                                      color: const Color(0xffFFFFFF),
                                                       fontWeight:
                                                           FontWeight.w500,
                                                     ),
@@ -576,7 +578,7 @@ class _MyHomeState extends State<MyHome> {
                                         onPressed: () {
                                           Navigator.pushReplacement(
                                             context,
-                                            CupertinoPageRoute(
+                                            MaterialPageRoute(
                                               builder: (context) =>
                                                   const SignIn(),
                                             ),
@@ -608,7 +610,7 @@ class _MyHomeState extends State<MyHome> {
                                       'Welcome ${userNotifier.user.userName ?? ""}!',
                                       style: GoogleFonts.raleway(
                                         fontSize: 20,
-                                        color: Color(0xffFFFFFF),
+                                        color: const Color(0xffFFFFFF),
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -722,7 +724,7 @@ class _MyHomeState extends State<MyHome> {
                                                     .toString(),
                                                 style: GoogleFonts.raleway(
                                                   fontSize: 10,
-                                                  color: Color(0xffFFFFFF),
+                                                  color: const Color(0xffFFFFFF),
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -744,7 +746,7 @@ class _MyHomeState extends State<MyHome> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16),
                                       decoration: BoxDecoration(
-                                        color: Color(0xffFFFFFF),
+                                        color: const Color(0xffFFFFFF),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                       child: DropdownButton<String>(
@@ -792,7 +794,7 @@ class _MyHomeState extends State<MyHome> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16),
                                       decoration: BoxDecoration(
-                                        color: Color(0xffFFFFFF),
+                                        color: const Color(0xffFFFFFF),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
                                       child: DropdownButton<String>(
@@ -863,7 +865,7 @@ class _MyHomeState extends State<MyHome> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 16),
                                 decoration: BoxDecoration(
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: DropdownButton<String>(
@@ -910,7 +912,7 @@ class _MyHomeState extends State<MyHome> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16, vertical: 10),
                                 decoration: BoxDecoration(
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Column(
@@ -990,7 +992,7 @@ class _MyHomeState extends State<MyHome> {
                                                                     0xFF29395B),
                                                               ),
                                                             ),
-                                                            Container(
+                                                            SizedBox(
                                                               height: 400,
                                                               width: 200,
                                                               child: ListView
@@ -1175,7 +1177,7 @@ class _MyHomeState extends State<MyHome> {
                                                                     0xFF29395B),
                                                               ),
                                                             ),
-                                                            Container(
+                                                            SizedBox(
                                                               height: 400,
                                                               width: 200,
                                                               child: ListView
@@ -1253,7 +1255,7 @@ class _MyHomeState extends State<MyHome> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16, vertical: 10),
                                 decoration: BoxDecoration(
-                                  color: Color(0xffFFFFFF),
+                                  color: const Color(0xffFFFFFF),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Column(
@@ -1450,7 +1452,7 @@ class _MyHomeState extends State<MyHome> {
                           style: GoogleFonts.raleway(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xffFFFFFF),
+                            color: const Color(0xffFFFFFF),
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -1539,7 +1541,7 @@ class _MyHomeState extends State<MyHome> {
                                         style: GoogleFonts.raleway(
                                           fontSize: 34,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xffFFFFFF),
+                                          color: const Color(0xffFFFFFF),
                                         ),
                                       ),
                                     ],
@@ -1560,7 +1562,7 @@ class _MyHomeState extends State<MyHome> {
                                             userNotifier.user.userName ?? "",
                                             style: GoogleFonts.raleway(
                                               fontSize: 15,
-                                              color: Color(0xffFFFFFF),
+                                              color: const Color(0xffFFFFFF),
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -1641,7 +1643,7 @@ class _MyHomeState extends State<MyHome> {
                                                                       CircleAvatar(
                                                                     radius: 28,
                                                                     backgroundColor:
-                                                                        Color(
+                                                                        const Color(
                                                                             0xffFFFFFF),
                                                                     child: currentUserNotification[index].flightAirline ==
                                                                             'Emirates'
@@ -1675,7 +1677,7 @@ class _MyHomeState extends State<MyHome> {
                                                                           .raleway(
                                                                         fontSize:
                                                                             16,
-                                                                        color: Color(
+                                                                        color: const Color(
                                                                             0xffFFFFFF),
                                                                         fontWeight:
                                                                             FontWeight.w400,
@@ -1691,7 +1693,7 @@ class _MyHomeState extends State<MyHome> {
                                                                             fontSize:
                                                                                 14,
                                                                             color:
-                                                                                Color(0xffFFFFFF),
+                                                                                const Color(0xffFFFFFF),
                                                                             fontWeight:
                                                                                 FontWeight.w400,
                                                                           ),
@@ -1723,7 +1725,7 @@ class _MyHomeState extends State<MyHome> {
                                                                             fontSize:
                                                                                 14,
                                                                             color:
-                                                                                Color(0xffFFFFFF),
+                                                                                const Color(0xffFFFFFF),
                                                                             fontWeight:
                                                                                 FontWeight.w400,
                                                                           ),
@@ -1760,7 +1762,7 @@ class _MyHomeState extends State<MyHome> {
                                                                       .raleway(
                                                                     fontSize:
                                                                         18,
-                                                                    color: Color(
+                                                                    color: const Color(
                                                                         0xffFFFFFF),
                                                                     fontWeight:
                                                                         FontWeight
@@ -1797,7 +1799,7 @@ class _MyHomeState extends State<MyHome> {
                                                       .toString(),
                                                   style: GoogleFonts.raleway(
                                                     fontSize: 12,
-                                                    color: Color(0xffFFFFFF),
+                                                    color: const Color(0xffFFFFFF),
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
@@ -1840,7 +1842,7 @@ class _MyHomeState extends State<MyHome> {
                                       'Welcome ${userNotifier.user.userName ?? ""}!',
                                       style: GoogleFonts.raleway(
                                         fontSize: 35,
-                                        color: Color(0xffFFFFFF),
+                                        color: const Color(0xffFFFFFF),
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -1969,7 +1971,7 @@ class _MyHomeState extends State<MyHome> {
                                                         .toString(),
                                                     style: GoogleFonts.raleway(
                                                       fontSize: 12,
-                                                      color: Color(0xffFFFFFF),
+                                                      color: const Color(0xffFFFFFF),
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -2008,7 +2010,7 @@ class _MyHomeState extends State<MyHome> {
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 16),
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xffFFFFFF),
+                                                  color: const Color(0xffFFFFFF),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
                                                 ),
@@ -2063,7 +2065,7 @@ class _MyHomeState extends State<MyHome> {
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 16),
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xffFFFFFF),
+                                                  color: const Color(0xffFFFFFF),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
                                                 ),
@@ -2142,7 +2144,7 @@ class _MyHomeState extends State<MyHome> {
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 16),
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xffFFFFFF),
+                                                  color: const Color(0xffFFFFFF),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
                                                 ),
@@ -2200,7 +2202,7 @@ class _MyHomeState extends State<MyHome> {
                                         height: 190,
                                         width: screenWidth * 0.55,
                                         decoration: BoxDecoration(
-                                          color: Color(0xffFFFFFF),
+                                          color: const Color(0xffFFFFFF),
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
@@ -2306,7 +2308,7 @@ class _MyHomeState extends State<MyHome> {
                                                                               const Color(0xFF29395B),
                                                                         ),
                                                                       ),
-                                                                      Container(
+                                                                      SizedBox(
                                                                         height:
                                                                             400,
                                                                         width:
@@ -2520,7 +2522,7 @@ class _MyHomeState extends State<MyHome> {
                                                                               const Color(0xFF29395B),
                                                                         ),
                                                                       ),
-                                                                      Container(
+                                                                      SizedBox(
                                                                         height:
                                                                             400,
                                                                         width:
@@ -2592,7 +2594,7 @@ class _MyHomeState extends State<MyHome> {
                                     width: 260,
                                     height: 280,
                                     decoration: BoxDecoration(
-                                      color: Color(0xffFFFFFF),
+                                      color: const Color(0xffFFFFFF),
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Column(
@@ -2788,7 +2790,7 @@ class _MyHomeState extends State<MyHome> {
                           child: Container(
                             height: 200,
                             width: 300,
-                            color: Color(0xffFFFFFF),
+                            color: const Color(0xffFFFFFF),
                           ),
                         ),
                       )
@@ -2810,7 +2812,7 @@ class _MyHomeState extends State<MyHome> {
                           style: GoogleFonts.raleway(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xffFFFFFF),
+                            color: const Color(0xffFFFFFF),
                           ),
                         ),
                         const SizedBox(height: 200),

@@ -1,4 +1,4 @@
-import 'package:explore_era/Views/register.dart';
+import 'package:explore_era/Screens/register.dart';
 import 'package:explore_era/Widgets/custom_scaffold.dart';
 import 'package:explore_era/widgets/Helper.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Helper.VideoButton(
+                      Helper.videoButton(
                           context, "Register Now", const Register()),
                     ],
                   ),

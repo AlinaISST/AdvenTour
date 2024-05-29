@@ -16,7 +16,7 @@ class _NotificationsState extends State<Notifications> {
         backgroundColor: const Color(0xFF29395B),
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_rounded,
             color: Color(0xffFFFFFF),
           ),

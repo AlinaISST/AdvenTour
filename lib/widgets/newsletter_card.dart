@@ -1,8 +1,8 @@
+import 'package:explore_era/Screens/newsletter.dart';
 import 'package:flutter/material.dart';
-import 'package:explore_era/Views/newsletter.dart';
 
 class NewsletterCard extends StatelessWidget {
-  const NewsletterCard({Key? key}) : super(key: key);
+  const NewsletterCard({super.key});
 
   @override
   Widget build(BuildContext context) {

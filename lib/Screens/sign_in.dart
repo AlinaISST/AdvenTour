@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:explore_era/Views/ticket_booking.dart';
+import 'package:explore_era/Model/user.dart';
+import 'package:explore_era/Screens/ticket_booking.dart';
 import 'package:provider/provider.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
-import 'package:explore_era/Modal/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +15,7 @@ const List<Widget> consents = <Widget>[
 ];
 
 class SignIn extends StatelessWidget {
-  const SignIn({Key? key}) : super(key: key);
+  const SignIn({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class SignIn extends StatelessWidget {
 }
 
 class _Logo extends StatelessWidget {
-  const _Logo({Key? key}) : super(key: key);
+  const _Logo();
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class _Logo extends StatelessWidget {
 }
 
 class _FormContent extends StatefulWidget {
-  const _FormContent({Key? key}) : super(key: key);
+  const _FormContent();
 
   @override
   State<_FormContent> createState() => __FormContentState();
@@ -235,7 +235,7 @@ class __FormContentState extends State<_FormContent> {
                                 context,
                                 CupertinoPageRoute(
                                   // builder: (context) => const Home(),
-                                  builder: (context) => const MyHome(),
+                                  builder: (context) => const TicketBooking(),
                                 ),
                               );
                             } else {

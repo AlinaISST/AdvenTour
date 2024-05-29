@@ -1,8 +1,8 @@
-import 'package:explore_era/Views/home_page.dart';
+import 'package:explore_era/Screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatelessWidget {
-  const MainView({Key? key}) : super(key: key);
+  const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class MainView extends StatelessWidget {
 }
 
 class _Logo extends StatelessWidget {
-  const _Logo({Key? key}) : super(key: key);
+  const _Logo();
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +60,14 @@ class _Logo extends StatelessWidget {
 }
 
 class _ButtonContent extends StatefulWidget {
-  const _ButtonContent({Key? key}) : super(key: key);
+  const _ButtonContent();
 
   @override
   State<_ButtonContent> createState() => __ButtonContentState();
 }
 
 class __ButtonContentState extends State<_ButtonContent> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +155,5 @@ class __ButtonContentState extends State<_ButtonContent> {
     );
   }
 
-  Widget _gap() => const SizedBox(height: 13);
 
-  Widget _gapList() => const SizedBox(width: 20);
 }

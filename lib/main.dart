@@ -1,7 +1,7 @@
+import 'package:explore_era/Screens/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:explore_era/Provider/app.provider.dart';
 import 'package:flutter/material.dart';
-import 'package:explore_era/Views/home_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
             primary: const Color.fromRGBO(254, 206, 1, 1),
-            seedColor: Color.fromARGB(129, 254, 208, 1),
+            seedColor: const Color.fromARGB(129, 254, 208, 1),
           ),
           textTheme: const TextTheme(
             titleLarge: TextStyle(
@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
-        home: MyHomePage(),
+        home: const MyHomePage(),
       ),
     );
   }

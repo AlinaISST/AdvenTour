@@ -1,3 +1,4 @@
+import 'package:explore_era/Services/auth_services.dart';
 import 'package:provider/provider.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
 import 'package:explore_era/modal/user.dart';
@@ -40,9 +41,15 @@ List<DropdownMenuItem<String>> get preferredPackage {
   return package;
 }
 
-class Register extends StatelessWidget {
-  const Register({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  final Function()? onTap;
+  Register({Key? key, required this.onTap}) : super(key: key);
 
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     final bool _isSmallScreen = MediaQuery.of(context).size.width < 600;
@@ -52,36 +59,26 @@ class Register extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         child: _isSmallScreen
-            ? const SingleChildScrollView(
+            ? SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     _Logo(),
-                    _FormContent(),
+                    _FormContent(
+                      onTap: widget.onTap,
+                    ),
                   ],
                 ),
               )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 10),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                  _Logo(),
+                  SizedBox(width: 60),
+                  Center(
+                    child: _FormContent(
+                      onTap: widget.onTap,
                     ),
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _Logo(),
-                      SizedBox(width: 60),
-                      Center(
-                        child: _FormContent(),
-                      ),
-                    ],
                   ),
                 ],
               ),
@@ -123,7 +120,8 @@ class _Logo extends StatelessWidget {
 }
 
 class _FormContent extends StatefulWidget {
-  const _FormContent({Key? key}) : super(key: key);
+  final Function()? onTap;
+  const _FormContent({Key? key, required this.onTap}) : super(key: key);
 
   @override
   State<_FormContent> createState() => __FormContentState();
@@ -182,6 +180,7 @@ class __FormContentState extends State<_FormContent> {
 
   @override
   Widget build(BuildContext context) {
+    AuthServices authServices = AuthServices();
     final UserNotifier userNotifier =
         Provider.of<UserNotifier>(context, listen: false);
     final bool _isSmallScreen = MediaQuery.of(context).size.width < 600;
@@ -328,61 +327,91 @@ class __FormContentState extends State<_FormContent> {
                   ),
                 ),
                 onPressed: () async {
-                  if (_formKey.currentState?.validate() ?? false) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AlertDialog(
-                          content: LinearProgressIndicator(),
-                        );
-                      },
-                    );
-                    final String email = emailController.text;
-                    final String password = passwordController.text;
-                    final String userName = usernameController.text;
-                    final String phoneNumber = phoneNumberController.text;
+                  // if (_formKey.currentState?.validate() ?? false) {
+                  //   showDialog(
+                  //     context: context,
+                  //     builder: (context) {
+                  //       return const AlertDialog(
+                  //         content: LinearProgressIndicator(),
+                  //       );
+                  //     },
+                  //   );
+                  //   final String email = emailController.text;
+                  //   final String password = passwordController.text;
+                  //   final String userName = usernameController.text;
+                  //   final String phoneNumber = phoneNumberController.text;
+                  //   final User newUser = User(
+                  //     email: email,
+                  //     password: password,
+                  //     phoneNumber: phoneNumber,
+                  //     userName: userName,
+                  //   );
+                  //   userNotifier.adduser(newUser);
+                  //   final key = email.split('@')[0];
+                  //   final SharedPreferences sharedPref =
+                  //       await SharedPreferences.getInstance();
+                  //   final userSaved =
+                  //       await sharedPref.setString(key, userToJson(newUser));
+                  //   if (userSaved) {
+                  //     Navigator.pop(context);
+                  //     ScaffoldMessenger.of(context).showSnackBar(
+                  //       const SnackBar(
+                  //         content: Text('User Created Success'),
+                  //       ),
+                  //     );
+                  //     Navigator.pushReplacement(
+                  //       context,
+                  //       CupertinoPageRoute(
+                  //         builder: (context) => SignIn(),
+                  //       ),
+                  //     );
+                  //   } else {
+                  //     Navigator.pop(context);
+                  //     ScaffoldMessenger.of(context).showSnackBar(
+                  //       const SnackBar(
+                  //         content: Text('Something went wrong'),
+                  //       ),
+                  //     );
+                  //   }
+                  // }
 
-                    final User newUser = User(
-                      email: email,
-                      password: password,
-                      phoneNumber: phoneNumber,
-                      userName: userName,
-                    );
+                  final String email = emailController.text;
+                  final String password = passwordController.text;
+                  final String userName = usernameController.text;
+                  final String phoneNumber = phoneNumberController.text;
 
-                    userNotifier.adduser(newUser);
-
-                    final key = email.split('@')[0];
-
-                    final SharedPreferences sharedPref =
-                        await SharedPreferences.getInstance();
-
-                    final userSaved =
-                        await sharedPref.setString(key, userToJson(newUser));
-
-                    if (userSaved) {
-                      Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('User Created Success'),
-                        ),
-                      );
-                      Navigator.pushReplacement(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const SignIn(),
-                        ),
-                      );
-                    } else {
-                      Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Something went wrong'),
-                        ),
-                      );
-                    }
-                  }
+                  authServices.signUp(
+                    context: context,
+                    email: email,
+                    userName: userName,
+                    password: password,
+                    phoneNumber: phoneNumber,
+                  );
                 },
               ),
+            ),
+            _gap(),
+            Row(
+              children: [
+                const Expanded(
+                  child: Text(
+                    "Already have an account?",
+                    style: TextStyle(fontSize: 13),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                TextButton(
+                  onPressed: widget.onTap,
+                  child: const Text(
+                    "Log In!",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF29395B),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:explore_era/Pages/home.dart';
+import 'package:explore_era/Services/auth_services.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
 import 'package:explore_era/modal/user.dart';
@@ -14,9 +17,15 @@ const List<Widget> consents = <Widget>[
   Text('No'),
 ];
 
-class SignIn extends StatelessWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  final Function()? onTap;
+  SignIn({Key? key, required this.onTap}) : super(key: key);
 
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
@@ -25,21 +34,21 @@ class SignIn extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         child: isSmallScreen
-            ? const Column(
+            ? Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   _Logo(),
                   SizedBox(height: 30),
-                  _FormContent(),
+                  _FormContent(onTap: widget.onTap),
                 ],
               )
-            : const Row(
+            : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _Logo(),
                   SizedBox(width: 60),
                   Center(
-                    child: _FormContent(),
+                    child: _FormContent(onTap: widget.onTap),
                   ),
                 ],
               ),
@@ -82,7 +91,8 @@ class _Logo extends StatelessWidget {
 }
 
 class _FormContent extends StatefulWidget {
-  const _FormContent({Key? key}) : super(key: key);
+  final Function()? onTap;
+  const _FormContent({Key? key, required this.onTap}) : super(key: key);
 
   @override
   State<_FormContent> createState() => __FormContentState();
@@ -97,6 +107,7 @@ class __FormContentState extends State<_FormContent> {
 
   @override
   Widget build(BuildContext context) {
+    AuthServices authServices = AuthServices();
     final UserNotifier userNotifier =
         Provider.of<UserNotifier>(context, listen: false);
     // final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
@@ -180,83 +191,95 @@ class __FormContentState extends State<_FormContent> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState?.validate() ?? false) {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const AlertDialog(
-                            content: LinearProgressIndicator(),
-                          );
-                        },
-                      );
-
                       final String email = emailController.text;
                       final String password = passwordController.text;
-
-                      final key = email.split('@')[0];
-
-                      final SharedPreferences sharedPref =
-                          await SharedPreferences.getInstance();
-                      final String? userString = sharedPref.getString(key);
-
-                      Timer(const Duration(seconds: 2), () {
-                        if (userString == null) {
-                          // ignore: use_build_context_synchronously
-                          Navigator.pop(context);
-                          showDialog(
-                            // ignore: use_build_context_synchronously
-                            context: context,
-                            builder: (context) {
-                              return const AlertDialog(
-                                content: Text('User not found'),
-                              );
-                            },
-                          );
-                        } else {
-                          final User user = userFromJson(userString);
-
-                          userNotifier.adduser(user);
-
-                          if (user.email == email) {
-                            if (user.password == password) {
-                              Navigator.pop(context);
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Login Successfull'),
-                                ),
-                              );
-
-                              Navigator.pushReplacement(
-                                context,
-                                CupertinoPageRoute(
-                                  // builder: (context) => const Home(),
-                                  builder: (context) => const MyHome(),
-                                ),
-                              );
-                            } else {
-                              Navigator.pop(context);
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return const AlertDialog(
-                                    content: Text('Entered wrong password'),
-                                  );
-                                },
-                              );
-                            }
-                          } else {
-                            Navigator.pop(context);
-                            showDialog(
+                      await authServices
+                          .login(
                               context: context,
-                              builder: (context) {
-                                return const AlertDialog(
-                                  content: Text('Entered wrong email'),
-                                );
-                              },
-                            );
-                          }
-                        }
+                              email: email,
+                              password: password)
+                          .whenComplete(() {
+                        emailController.clear();
+                        passwordController.clear();
                       });
+
+                      // showDialog(
+                      //   context: context,
+                      //   builder: (context) {
+                      //     return const AlertDialog(
+                      //       content: LinearProgressIndicator(),
+                      //     );
+                      //   },
+                      // );
+
+                      // final String email = emailController.text;
+                      // final String password = passwordController.text;
+
+                      // final key = email.split('@')[0];
+
+                      // final SharedPreferences sharedPref =
+                      //     await SharedPreferences.getInstance();
+                      // final String? userString = sharedPref.getString(key);
+
+                      // Timer(const Duration(seconds: 2), () {
+                      //   if (userString == null) {
+                      //     // ignore: use_build_context_synchronously
+                      //     Navigator.pop(context);
+                      //     showDialog(
+                      //       // ignore: use_build_context_synchronously
+                      //       context: context,
+                      //       builder: (context) {
+                      //         return const AlertDialog(
+                      //           content: Text('User not found'),
+                      //         );
+                      //       },
+                      //     );
+                      //   } else {
+                      //     final User user = userFromJson(userString);
+
+                      //     userNotifier.adduser(user);
+
+                      //     if (user.email == email) {
+                      //       if (user.password == password) {
+                      //         Navigator.pop(context);
+
+                      //         ScaffoldMessenger.of(context).showSnackBar(
+                      //           const SnackBar(
+                      //             content: Text('Login Successfull'),
+                      //           ),
+                      //         );
+
+                      //         Navigator.pushReplacement(
+                      //           context,
+                      //           CupertinoPageRoute(
+                      //             // builder: (context) => const Home(),
+                      //             builder: (context) => const MyHome(),
+                      //           ),
+                      //         );
+                      //       } else {
+                      //         Navigator.pop(context);
+                      //         showDialog(
+                      //           context: context,
+                      //           builder: (context) {
+                      //             return const AlertDialog(
+                      //               content: Text('Entered wrong password'),
+                      //             );
+                      //           },
+                      //         );
+                      //       }
+                      //     } else {
+                      //       Navigator.pop(context);
+                      //       showDialog(
+                      //         context: context,
+                      //         builder: (context) {
+                      //           return const AlertDialog(
+                      //             content: Text('Entered wrong email'),
+                      //           );
+                      //         },
+                      //       );
+                      //     }
+                      //   }
+                      // });
                     }
                   },
                 ),
@@ -272,14 +295,7 @@ class __FormContentState extends State<_FormContent> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const Register(),
-                        ),
-                      );
-                    },
+                    onPressed: widget.onTap,
                     child: const Text(
                       "Sign Up!",
                       style: TextStyle(

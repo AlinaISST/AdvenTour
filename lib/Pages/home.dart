@@ -1,16 +1,20 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:explore_era/Components/custom_card.dart';
 import 'package:explore_era/Data/countries.dart';
 import 'package:explore_era/Notifier/flight.notifier.dart';
 import 'package:explore_era/Notifier/notification.notifier.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
+import 'package:explore_era/Pages/Profile_page.dart';
+import 'package:explore_era/Pages/Ticket_booking.dart';
 import 'package:explore_era/Pages/schedule_flight.dart';
 import 'package:explore_era/Pages/view_booking.dart';
 import 'package:explore_era/Services/email.services.dart';
 import 'package:explore_era/modal/flight.dart';
 import 'package:explore_era/Pages/SignIn.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -98,13 +102,13 @@ class _MyHomeState extends State<MyHome> {
           updateCurrentUserNotification(currentUserNotificationsss);
           notificationNotifier.notificationCount =
               currentUserNotification.length;
-          EmmailServiecs.sendEmail(
-            email: userNotifier.user.email!,
-            message:
-                'Dear valued customer,\n\nWe\'re pleased to inform you that the fare for your booked flight from ${flight.flightFrom} to ${flight.flightTo} has been reduced today. We recommend taking advantage of this opportunity by securing your ticket promptly. The revised fare amount is Rs. $lowFarePrice.\n\nThank you for choosing our services. Should you have any questions or require further assistance, feel free to contact us.',
-            name: userNotifier.user.userName!,
-            subject: 'Exclusive Deal: Grab Your Flight Ticket at a Lower Fare!',
-          );
+          // EmmailServiecs.sendEmail(
+          //   email: userNotifier.user.email!,
+          //   message:
+          //       'Dear valued customer,\n\nWe\'re pleased to inform you that the fare for your booked flight from ${flight.flightFrom} to ${flight.flightTo} has been reduced today. We recommend taking advantage of this opportunity by securing your ticket promptly. The revised fare amount is Rs. $lowFarePrice.\n\nThank you for choosing our services. Should you have any questions or require further assistance, feel free to contact us.',
+          //   name: userNotifier.user.userName!,
+          //   subject: 'Exclusive Deal: Grab Your Flight Ticket at a Lower Fare!',
+          // );
           print('Notification Send');
         } else {
           print('Notification Not Send');
@@ -118,6 +122,17 @@ class _MyHomeState extends State<MyHome> {
     final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
+
+    // current logged in user
+    final User? currentUser = FirebaseAuth.instance.currentUser;
+
+    // future to fetch user details
+    Future<DocumentSnapshot<Map<String, dynamic>>> getUserDetails() async {
+      return await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(currentUser!.email)
+          .get();
+    }
 
     final UserNotifier userNotifier =
         Provider.of<UserNotifier>(context, listen: false);
@@ -573,14 +588,15 @@ class _MyHomeState extends State<MyHome> {
                                       ),
                                       IconButton(
                                         tooltip: 'Logout',
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            CupertinoPageRoute(
-                                              builder: (context) =>
-                                                  const SignIn(),
-                                            ),
-                                          );
+                                        onPressed: () async {
+                                          // Navigator.pushReplacement(
+                                          //   context,
+                                          //   CupertinoPageRoute(
+                                          //     builder: (context) =>
+                                          //         SignIn(),
+                                          //   ),
+                                          // );
+                                          await FirebaseAuth.instance.signOut();
                                         },
                                         icon: const Icon(
                                           Icons.logout,
@@ -1548,22 +1564,64 @@ class _MyHomeState extends State<MyHome> {
                                     children: [
                                       Row(
                                         children: [
-                                          const CircleAvatar(
-                                            radius: 20,
-                                            backgroundColor: Color(0xffFFFFFF),
-                                            backgroundImage: AssetImage(
-                                              'assets/images/boy.png',
+                                          GestureDetector(
+                                            onTap: () => Navigator.push(
+                                              context,
+                                              CupertinoPageRoute(
+                                                builder: (context) =>
+                                                    ProfilePage(),
+                                              ),
+                                            ),
+                                            child: const CircleAvatar(
+                                              radius: 20,
+                                              backgroundColor:
+                                                  Color(0xffFFFFFF),
+                                              backgroundImage: AssetImage(
+                                                'assets/images/boy.png',
+                                              ),
                                             ),
                                           ),
                                           const SizedBox(width: 10),
-                                          Text(
-                                            userNotifier.user.userName ?? "",
-                                            style: GoogleFonts.raleway(
-                                              fontSize: 15,
-                                              color: Color(0xffFFFFFF),
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
+                                          FutureBuilder<
+                                                  DocumentSnapshot<
+                                                      Map<String, dynamic>>>(
+                                              future: getUserDetails(),
+                                              builder: (context, snapshot) {
+                                                // loading6
+                                                if (snapshot.connectionState ==
+                                                    ConnectionState.waiting) {
+                                                  return Row(
+                                                    children: [
+                                                      CircularProgressIndicator(),
+                                                    ],
+                                                  );
+                                                } else if (snapshot.hasError) {
+                                                  return Text(
+                                                      "Error ${snapshot.error}");
+                                                } else if (snapshot.hasData) {
+                                                  // extract data
+                                                  Map<String, dynamic>? user =
+                                                      snapshot.data!.data();
+                                                  return Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        '${user!['userName'] ?? ""}',
+                                                        style:
+                                                            GoogleFonts.raleway(
+                                                          fontSize: 18,
+                                                          color:
+                                                              Color(0xffFFFFFF),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  );
+                                                } else {
+                                                  return const Text('No Data');
+                                                }
+                                              }),
                                         ],
                                       ),
                                       const SizedBox(
@@ -1811,14 +1869,14 @@ class _MyHomeState extends State<MyHome> {
                                       ),
                                       IconButton(
                                         tooltip: 'Logout',
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            CupertinoPageRoute(
-                                              builder: (context) =>
-                                                  const SignIn(),
-                                            ),
-                                          );
+                                        onPressed: () async {
+                                          // Navigator.pushReplacement(
+                                          //   context,
+                                          //   CupertinoPageRoute(
+                                          //     builder: (context) => SignIn(),
+                                          //   ),
+                                          // );
+                                          await FirebaseAuth.instance.signOut();
                                         },
                                         icon: const Icon(
                                           Icons.logout,
@@ -1832,20 +1890,42 @@ class _MyHomeState extends State<MyHome> {
 
                               Padding(
                                 padding: const EdgeInsets.only(top: 50),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Welcome ${userNotifier.user.userName ?? ""}!',
-                                      style: GoogleFonts.raleway(
-                                        fontSize: 35,
-                                        color: Color(0xffFFFFFF),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                child: FutureBuilder<
+                                        DocumentSnapshot<Map<String, dynamic>>>(
+                                    future: getUserDetails(),
+                                    builder: (context, snapshot) {
+                                      // loading6
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return Row(
+                                          children: [
+                                            CircularProgressIndicator(),
+                                          ],
+                                        );
+                                      } else if (snapshot.hasError) {
+                                        return Text("Error ${snapshot.error}");
+                                      } else if (snapshot.hasData) {
+                                        // extract data
+                                        Map<String, dynamic>? user =
+                                            snapshot.data!.data();
+                                        return Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Welcome ${user!['userName'] ?? ""}!',
+                                              style: GoogleFonts.raleway(
+                                                fontSize: 35,
+                                                color: Color(0xffFFFFFF),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      } else {
+                                        return const Text('No Data');
+                                      }
+                                    }),
                               ),
 
                               const SizedBox(height: 50),
@@ -1855,44 +1935,55 @@ class _MyHomeState extends State<MyHome> {
                                 children: [
                                   Row(
                                     children: [
-                                      Container(
-                                        margin: const EdgeInsets.only(top: 10),
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 14,
-                                          vertical: 5,
+                                      GestureDetector(
+                                        onTap: () => Navigator.push(
+                                          context,
+                                          CupertinoPageRoute(
+                                            builder: (context) =>
+                                                TicketBooking(),
+                                          ),
                                         ),
-                                        decoration: BoxDecoration(
-                                          // color: Colors.amber.shade400,
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              Colors.amber.shade200,
-                                              Colors.amber.shade500,
+                                        child: Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 10),
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 14,
+                                            vertical: 5,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            // color: Colors.amber.shade400,
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Colors.amber.shade200,
+                                                Colors.amber.shade500,
+                                              ],
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Transform.rotate(
+                                                angle: 45,
+                                                child: const Icon(
+                                                  Icons.airplanemode_on,
+                                                  color: Color(0xFF29395B),
+                                                ),
+                                              ),
+                                              const SizedBox(width: 10),
+                                              Text(
+                                                'Ticket Booking',
+                                                style: GoogleFonts.raleway(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color:
+                                                      const Color(0xFF29395B),
+                                                ),
+                                              ),
                                             ],
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Transform.rotate(
-                                              angle: 45,
-                                              child: const Icon(
-                                                Icons.airplanemode_on,
-                                                color: Color(0xFF29395B),
-                                              ),
-                                            ),
-                                            const SizedBox(width: 10),
-                                            Text(
-                                              'Ticket Booking',
-                                              style: GoogleFonts.raleway(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                color: const Color(0xFF29395B),
-                                              ),
-                                            ),
-                                          ],
                                         ),
                                       ),
                                       const SizedBox(width: 20),

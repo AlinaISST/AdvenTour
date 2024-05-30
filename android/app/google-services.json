@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "627740867098",
+    "project_id": "exploreera-4e9ca",
+    "storage_bucket": "exploreera-4e9ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627740867098:android:01b2fa6119244aadf62fa3",
+        "android_client_info": {
+          "package_name": "com.example.explore_era"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN1F2eb2v26dV6dRxPWluKih95Gvw_v2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -49,14 +49,14 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             const MyHomePage(),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Helper.appButton(
-            context,
-            "Location",
-            const MyHomePage(),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.all(15.0),
+        //   child: Helper.appButton(
+        //     context,
+        //     "Location",
+        //     const MyHomePage(),
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Helper.appButton(

@@ -1,4 +1,6 @@
 import 'package:explore_era/Screens/home_page.dart';
+import 'package:explore_era/Screens/ticket_booking.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomepageItems extends StatelessWidget {
@@ -25,29 +27,29 @@ class HomepageItems extends StatelessWidget {
                 "Flight Services",
                 "Arrival and Departure",
                 "assets/icons/plane.png",
-                const MyHomePage(),
               ),
-              buildOutlinedButton(
-                context,
-                "Food Services",
-                "Catering",
-                "assets/icons/food.png",
-                const MyHomePage(),
-              ),
-              buildOutlinedButton(
-                context,
-                "Travel Services",
-                "Pick-up/drop",
-                "assets/icons/bus.png",
-                const MyHomePage(),
-              ),
-              buildOutlinedButton(
-                context,
-                "Hotel Services",
-                "Check-in/out",
-                "assets/icons/hotel.png",
-                const MyHomePage(),
-              ),
+
+              // buildOutlinedButton(
+              //   context,
+              //   "Food Services",
+              //   "Catering",
+              //   "assets/icons/food.png",
+              //   const MyHomePage(),
+              // ),
+              // buildOutlinedButton(
+              //   context,
+              //   "Travel Services",
+              //   "Pick-up/drop",
+              //   "assets/icons/bus.png",
+              //   const MyHomePage(),
+              // ),
+              // buildOutlinedButton(
+              //   context,
+              //   "Hotel Services",
+              //   "Check-in/out",
+              //   "assets/icons/hotel.png",
+              //   const MyHomePage(),
+              // ),
             ],
           ),
         ],
@@ -58,28 +60,16 @@ class HomepageItems extends StatelessWidget {
   static Color activebuttoncolor = const Color(0xFFfbe9d3); //0xFF9bc1c0
   static Color inactivebuttoncolor = const Color(0xFFa4a4a4);
 
-  OutlinedButton buildOutlinedButton(BuildContext context, String name,
-      String subtext, String image, Widget page) {
-    return OutlinedButton(
-      //child: const Text("Data Provider A"),
-      style: ButtonStyle(
-        backgroundColor:
-            WidgetStateProperty.all<Color>(const Color(0xFFFFFFFF)),
-        foregroundColor:
-            WidgetStateProperty.all<Color>(const Color(0xFF000000)),
-        overlayColor: WidgetStateProperty.all<Color>(
-            const Color(0xFF707070).withOpacity(0.05)),
-        elevation: WidgetStateProperty.all(15.0),
-        minimumSize: WidgetStateProperty.all<Size>(const Size(300, 300)),
-        textStyle: WidgetStateProperty.all<TextStyle>(
-            const TextStyle(fontWeight: FontWeight.bold)),
-        shape: WidgetStateProperty.resolveWith<OutlinedBorder>((_) {
-          return RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          );
-        }),
+  buildOutlinedButton(
+      BuildContext context, String name, String subtext, String image) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 30),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.black),
       ),
-
+      width: double.infinity,
       child: Column(
         children: <Widget>[
           Image.asset(
@@ -109,10 +99,6 @@ class HomepageItems extends StatelessWidget {
           ),
         ],
       ),
-
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
-      },
     );
   }
 }

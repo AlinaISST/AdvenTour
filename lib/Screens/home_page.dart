@@ -22,13 +22,15 @@ class _MyHomePageState extends State<MyHomePage> {
     final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
 
     return CustomScaffold(
-      Title: "AdvenTour",
+      Title: "Explore Era",
       isHomePage: true,
       body: ListView(
         children: [
           // Video background
           SizedBox(
-            height: isSmallScreen ? 100 : 400, // Set the height of the video
+            height: MediaQuery.of(context)
+                .size
+                .height, // Set the height of the video
             child: Stack(
               fit: StackFit.expand,
               children: [
@@ -36,78 +38,73 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
-                  child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: SizedBox(
-                      child: Ink.image(
-                        image: const AssetImage(
-                          "assets/images/banner.png",
-                        ),
-                        height: 300,
-                        width: 300,
-                        fit: BoxFit.cover,
-                      ),
+                  child: SizedBox(
+                    child: Image.asset(
+                      "assets/images/banner.png",
+                      height: 300,
+                      width: 300,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "ADVENTOUR",
-                        style: TextStyle(
-                            fontSize: isSmallScreen ? 20 : 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "Plan your trip with us and travel around the world with the most affordable packages!",
-                        style: TextStyle(
-                            fontSize: isSmallScreen ? 16 : 26,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Helper.videoButton(
-                          context, "Register Now", const Register()),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 60),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Explore Era",
+                          style: TextStyle(
+                              fontSize: isSmallScreen ? 20 : 35,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "Plan your trip with us and travel around the world with the most affordable packages!",
+                          style: TextStyle(
+                              fontSize: isSmallScreen ? 16 : 34,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        // Helper.videoButton(
+                        //     context, "Register Now", const Register()),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
 
-          const SizedBox(
-            height: 200,
-          ),
-
-          const Text(
-            "We have the best services available for you!",
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-
-          const SizedBox(
-            height: 5,
-          ),
-
-          // Homepage items
-          const Padding(
-            padding: EdgeInsets.all(20),
-            child: HomepageItems(),
-          ),
+          // const SizedBox(
+          //   height: 200,
+          // ),
+          // const Text(
+          //   "We have the best service available for you!",
+          //   style: TextStyle(
+          //     fontSize: 28,
+          //     fontWeight: FontWeight.bold,
+          //     color: Colors.white,
+          //   ),
+          //   textAlign: TextAlign.center,
+          // ),
+          // const SizedBox(
+          //   height: 5,
+          // ),
+          // // Homepage items
+          // const Padding(
+          //   padding: EdgeInsets.all(20),
+          //   child: HomepageItems(),
+          // ),
 
           const SizedBox(
             height: 30,
@@ -116,29 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
           const Text(
             "Packages",
             style: TextStyle(
-                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
-            textAlign: TextAlign.center,
-          ),
-
-          const SizedBox(
-            height: 5,
-          ),
-
-          // Homepage items
-          const Padding(
-            padding: EdgeInsets.all(20),
-            child: HomepageItemsPackages(),
-          ),
-
-
-          const SizedBox(
-            height: 30,
-          ),
-
-          const Text(
-            "Locations",
-            style: TextStyle(
-              fontSize: 28,
+              fontSize: 30,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
@@ -152,8 +127,29 @@ class _MyHomePageState extends State<MyHomePage> {
           // Homepage items
           const Padding(
             padding: EdgeInsets.all(20),
-            child: HomepageItemsLocations(),
+            child: HomepageItemsPackages(),
           ),
+
+          // const SizedBox(
+          //   height: 30,
+          // ),
+          // const Text(
+          //   "Locations",
+          //   style: TextStyle(
+          //     fontSize: 28,
+          //     fontWeight: FontWeight.bold,
+          //     color: Colors.black,
+          //   ),
+          //   textAlign: TextAlign.center,
+          // ),
+          // const SizedBox(
+          //   height: 5,
+          // ),
+          // // Homepage items
+          // const Padding(
+          //   padding: EdgeInsets.all(20),
+          //   child: HomepageItemsLocations(),
+          // ),
 
           const SizedBox(
             height: 30,

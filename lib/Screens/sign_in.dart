@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:explore_era/Model/user.dart';
+import 'package:explore_era/Screens/home_page.dart';
 import 'package:explore_era/Screens/ticket_booking.dart';
 import 'package:provider/provider.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
@@ -119,7 +120,7 @@ class __FormContentState extends State<_FormContent> {
                   RegExp regex = RegExp(pattern);
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
-                  } else if (!regex.hasMatch(value)){
+                  } else if (!regex.hasMatch(value)) {
                     return 'You entered wrong email...';
                   }
                   return null;
@@ -235,7 +236,7 @@ class __FormContentState extends State<_FormContent> {
                                 context,
                                 CupertinoPageRoute(
                                   // builder: (context) => const Home(),
-                                  builder: (context) => const TicketBooking(),
+                                  builder: (context) => const MyHomePage(),
                                 ),
                               );
                             } else {

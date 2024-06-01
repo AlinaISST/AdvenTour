@@ -101,7 +101,7 @@ class __ButtonContentState extends State<_ButtonContent> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        WidgetStateProperty.all<Color>(const Color(0xFFe65c00)),
+                        MaterialStateProperty.all<Color>(const Color(0xFFe65c00)),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -133,7 +133,7 @@ class __ButtonContentState extends State<_ButtonContent> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(
+                    backgroundColor: MaterialStateProperty.all<Color>(
                         const Color(0xFFe65c00)),
                   ),
                   onPressed: () {

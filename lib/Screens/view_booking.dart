@@ -79,7 +79,7 @@ class _ViewBookingState extends State<ViewBooking> {
           ),
         ),
         title: Text(
-          'View Booking',
+          'Schedule Booking',
           style: GoogleFonts.raleway(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -1862,7 +1862,8 @@ class _ViewBookingState extends State<ViewBooking> {
                                                       builder: (context) {
                                                         return AlertDialog(
                                                           backgroundColor:
-                                                              const Color(0xffFFFFFF),
+                                                              const Color(
+                                                                  0xffFFFFFF),
                                                           title: Text(
                                                             'Payment Success!',
                                                             style: GoogleFonts
@@ -2003,7 +2004,8 @@ class _ViewBookingState extends State<ViewBooking> {
                                                 style: GoogleFonts.raleway(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.bold,
-                                                  color: const Color(0xffFFFFFF),
+                                                  color:
+                                                      const Color(0xffFFFFFF),
                                                 ),
                                               ),
                                             ),

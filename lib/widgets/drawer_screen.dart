@@ -1,12 +1,19 @@
+import 'package:explore_era/Notifier/user.notifier.dart';
 import 'package:explore_era/Screens/home_page.dart';
 import 'package:explore_era/Screens/sign_in.dart';
+import 'package:explore_era/Screens/ticket_booking.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class DrawerScreen extends StatelessWidget {
   const DrawerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final UserNotifier userNotifier =
+        Provider.of<UserNotifier>(context, listen: false);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -23,21 +30,12 @@ class DrawerScreen extends StatelessWidget {
                 ),
               ],
             ),
-            accountName: const Text(
-              "JohnDoe",
-              textAlign: TextAlign.center,
-              style: TextStyle(
+            accountName: Text(
+              userNotifier.user.userName ?? "",
+              style: GoogleFonts.raleway(
+                fontSize: 15,
+                color: const Color(0xffFFFFFF),
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
-                shadows: [
-                  BoxShadow(
-                    color: Color(0xFFbdbdbd),
-                    blurRadius: 1.0,
-                    spreadRadius: 10.0,
-                    blurStyle: BlurStyle.outer,
-                    //offset: Offset(1.0, 1.0),
-                  ),
-                ],
               ),
             ),
             currentAccountPicture: CircleAvatar(
@@ -51,44 +49,44 @@ class DrawerScreen extends StatelessWidget {
             ),
             accountEmail: null,
           ),
-          ListTile(
-            dense: true,
-            leading: const Icon(
-              Icons.login_outlined,
-              color: Colors.black54,
-              shadows: [
-                BoxShadow(
-                  color: Colors.black38,
-                  blurRadius: 1.0,
-                  spreadRadius: 10.0,
-                  blurStyle: BlurStyle.outer,
-                ),
-              ],
-            ),
+          // ListTile(
+          //   dense: true,
+          //   leading: const Icon(
+          //     Icons.login_outlined,
+          //     color: Colors.black54,
+          //     shadows: [
+          //       BoxShadow(
+          //         color: Colors.black38,
+          //         blurRadius: 1.0,
+          //         spreadRadius: 10.0,
+          //         blurStyle: BlurStyle.outer,
+          //       ),
+          //     ],
+          //   ),
 
-            title: const Text(
-              'Log In',
-              style: TextStyle(
-                shadows: [
-                  BoxShadow(
-                    color: Colors.black38,
-                    blurRadius: 1.0,
-                    spreadRadius: 10.0,
-                    blurStyle: BlurStyle.outer,
-                  ),
-                ],
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SignIn(),
-                ),
-              );
-            },
-            //selected: true,
-          ),
+          //   title: const Text(
+          //     'Log In',
+          //     style: TextStyle(
+          //       shadows: [
+          //         BoxShadow(
+          //           color: Colors.black38,
+          //           blurRadius: 1.0,
+          //           spreadRadius: 10.0,
+          //           blurStyle: BlurStyle.outer,
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => const SignIn(),
+          //       ),
+          //     );
+          //   },
+          //   //selected: true,
+          // ),
           ListTile(
             dense: true,
             leading: const Icon(
@@ -105,7 +103,7 @@ class DrawerScreen extends StatelessWidget {
             ),
 
             title: const Text(
-              'Profile',
+              'Ticket Booking',
               style: TextStyle(
                 shadows: [
                   BoxShadow(
@@ -120,8 +118,8 @@ class DrawerScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const MyHomePage(),
+                CupertinoPageRoute(
+                  builder: (context) => const TicketBooking(),
                 ),
               );
             },
@@ -212,7 +210,14 @@ class DrawerScreen extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const SignIn(),
+                ),
+              );
+            },
           ),
           const Divider(),
           ListTile(
@@ -243,11 +248,8 @@ class DrawerScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const MyHomePage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()));
             },
           ),
           ListTile(
@@ -278,11 +280,8 @@ class DrawerScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const MyHomePage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()));
             },
           ),
           ListTile(

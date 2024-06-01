@@ -562,7 +562,8 @@ class _TicketBookingState extends State<TicketBooking> {
                                                         .toString(),
                                                     style: GoogleFonts.raleway(
                                                       fontSize: 12,
-                                                      color: const Color(0xffFFFFFF),
+                                                      color: const Color(
+                                                          0xffFFFFFF),
                                                       fontWeight:
                                                           FontWeight.w500,
                                                     ),
@@ -600,22 +601,19 @@ class _TicketBookingState extends State<TicketBooking> {
                                   ),
                                 ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Welcome ${userNotifier.user.userName ?? ""}!',
-                                      style: GoogleFonts.raleway(
-                                        fontSize: 20,
-                                        color: const Color(0xffFFFFFF),
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Welcome ${userNotifier.user.userName ?? ""}!',
+                                    style: GoogleFonts.raleway(
+                                      fontSize: 20,
+                                      color: const Color(0xffFFFFFF),
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                               Row(
                                 children: [
@@ -724,7 +722,8 @@ class _TicketBookingState extends State<TicketBooking> {
                                                     .toString(),
                                                 style: GoogleFonts.raleway(
                                                   fontSize: 10,
-                                                  color: const Color(0xffFFFFFF),
+                                                  color:
+                                                      const Color(0xffFFFFFF),
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -1515,7 +1514,7 @@ class _TicketBookingState extends State<TicketBooking> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 30, horizontal: 70),
+                              vertical: 15, horizontal: 70),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -1528,6 +1527,16 @@ class _TicketBookingState extends State<TicketBooking> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        },
+                                        icon: const Icon(
+                                          Icons.arrow_back_ios_new_rounded,
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                       Image.asset(
                                         'assets/images/logo.png',
                                         fit: BoxFit.cover,
@@ -1799,7 +1808,8 @@ class _TicketBookingState extends State<TicketBooking> {
                                                       .toString(),
                                                   style: GoogleFonts.raleway(
                                                     fontSize: 12,
-                                                    color: const Color(0xffFFFFFF),
+                                                    color:
+                                                        const Color(0xffFFFFFF),
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
@@ -1833,7 +1843,7 @@ class _TicketBookingState extends State<TicketBooking> {
                               ),
 
                               Padding(
-                                padding: const EdgeInsets.only(top: 50),
+                                padding: const EdgeInsets.only(top: 30),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1850,7 +1860,7 @@ class _TicketBookingState extends State<TicketBooking> {
                                 ),
                               ),
 
-                              const SizedBox(height: 50),
+                              const SizedBox(height: 20),
 
                               // ? Filght Scheduling
                               Row(
@@ -1902,7 +1912,7 @@ class _TicketBookingState extends State<TicketBooking> {
                                         children: [
                                           const SizedBox(
                                             height: 50,
-                                            width: 190,
+                                            width: 240,
                                           ),
                                           Positioned(
                                             bottom: 0,
@@ -1939,7 +1949,7 @@ class _TicketBookingState extends State<TicketBooking> {
                                                     ),
                                                     const SizedBox(width: 10),
                                                     Text(
-                                                      'View Booking',
+                                                      'Schedule Booking',
                                                       style:
                                                           GoogleFonts.raleway(
                                                         fontSize: 18,
@@ -1971,7 +1981,8 @@ class _TicketBookingState extends State<TicketBooking> {
                                                         .toString(),
                                                     style: GoogleFonts.raleway(
                                                       fontSize: 12,
-                                                      color: const Color(0xffFFFFFF),
+                                                      color: const Color(
+                                                          0xffFFFFFF),
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -2010,7 +2021,8 @@ class _TicketBookingState extends State<TicketBooking> {
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 16),
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffFFFFFF),
+                                                  color:
+                                                      const Color(0xffFFFFFF),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
                                                 ),
@@ -2065,7 +2077,8 @@ class _TicketBookingState extends State<TicketBooking> {
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 16),
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffFFFFFF),
+                                                  color:
+                                                      const Color(0xffFFFFFF),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
                                                 ),
@@ -2144,7 +2157,8 @@ class _TicketBookingState extends State<TicketBooking> {
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 16),
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xffFFFFFF),
+                                                  color:
+                                                      const Color(0xffFFFFFF),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
                                                 ),
@@ -2797,53 +2811,53 @@ class _TicketBookingState extends State<TicketBooking> {
                     ],
                   ),
 
-                  // ? Packages Section
-                  Container(
-                    height: screenHeight,
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 30, horizontal: 70),
-                    color: const Color(0xFF29395B),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Packages',
-                          style: GoogleFonts.raleway(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xffFFFFFF),
-                          ),
-                        ),
-                        const SizedBox(height: 200),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CustomCard(
-                              image: 'assets/images/bali.jpg',
-                              name: "Bali",
-                              price: "Rs. 32,800",
-                            ),
-                            CustomCard(
-                              image: 'assets/images/genevaa.png',
-                              name: "Geneva",
-                              price: "Rs. 45,700",
-                            ),
-                            CustomCard(
-                              image: 'assets/images/dubai.jpg',
-                              name: "Dubai",
-                              price: "Rs. 27,500",
-                            ),
-                            CustomCard(
-                              image: 'assets/images/london.png',
-                              name: "London",
-                              price: "Rs. 33,100",
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  // // ? Packages Section
+                  // Container(
+                  //   height: screenHeight,
+                  //   width: double.infinity,
+                  //   padding: const EdgeInsets.symmetric(
+                  //       vertical: 30, horizontal: 70),
+                  //   color: const Color(0xFF29395B),
+                  //   child: Column(
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       Text(
+                  //         'Packages',
+                  //         style: GoogleFonts.raleway(
+                  //           fontSize: 30,
+                  //           fontWeight: FontWeight.bold,
+                  //           color: const Color(0xffFFFFFF),
+                  //         ),
+                  //       ),
+                  //       const SizedBox(height: 200),
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: [
+                  //           CustomCard(
+                  //             image: 'assets/images/bali.jpg',
+                  //             name: "Bali",
+                  //             price: "Rs. 32,800",
+                  //           ),
+                  //           CustomCard(
+                  //             image: 'assets/images/genevaa.png',
+                  //             name: "Geneva",
+                  //             price: "Rs. 45,700",
+                  //           ),
+                  //           CustomCard(
+                  //             image: 'assets/images/dubai.jpg',
+                  //             name: "Dubai",
+                  //             price: "Rs. 27,500",
+                  //           ),
+                  //           CustomCard(
+                  //             image: 'assets/images/london.png',
+                  //             name: "London",
+                  //             price: "Rs. 33,100",
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
       ),

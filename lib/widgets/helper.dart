@@ -8,15 +8,15 @@ class Helper{
   static OutlinedButton createDataTableButton(BuildContext context,String name,{ Function()? onPressed}) {
     return OutlinedButton(
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all<Color>(
+        backgroundColor: MaterialStateProperty.all<Color>(
             activebuttoncolor),
-        foregroundColor: WidgetStateProperty.all<Color>(
+        foregroundColor: MaterialStateProperty.all<Color>(
             const Color(0xFFFFFFFF)),
-        overlayColor: WidgetStateProperty.all<Color>(
+        overlayColor: MaterialStateProperty.all<Color>(
             const Color(0xFFdcdcdc).withOpacity(0.2)),
-        elevation: WidgetStateProperty.all(4.0),
+        elevation: MaterialStateProperty.all(4.0),
         shape:
-        WidgetStateProperty.resolveWith<OutlinedBorder>(
+        MaterialStateProperty.resolveWith<OutlinedBorder>(
                 (_) {
               return RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
@@ -42,15 +42,15 @@ class Helper{
     return TextButton(
 
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all<Color>(
+        backgroundColor: MaterialStateProperty.all<Color>(
             const Color(0xFF29395B)),
-        foregroundColor: WidgetStateProperty.all<Color>(
+        foregroundColor: MaterialStateProperty.all<Color>(
             const Color(0xFF29395B)),
-        overlayColor: WidgetStateProperty.all<Color>(
+        overlayColor: MaterialStateProperty.all<Color>(
             const Color(0xFFFFFFFF).withOpacity(0.05)),
-        elevation: WidgetStateProperty.all(0.0),
-        minimumSize: WidgetStateProperty.all<Size>(const Size(100, 50)),
-        textStyle: WidgetStateProperty.all<TextStyle>(const TextStyle(fontWeight: FontWeight.normal)),
+        elevation: MaterialStateProperty.all(0.0),
+        minimumSize: MaterialStateProperty.all<Size>(const Size(100, 50)),
+        textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(fontWeight: FontWeight.normal)),
       ),
       onPressed: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) => page),
@@ -67,15 +67,15 @@ class Helper{
     return TextButton(
 
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all<Color>(
+        backgroundColor: MaterialStateProperty.all<Color>(
             const Color(0xFFFFFFFF)),
-        foregroundColor: WidgetStateProperty.all<Color>(
+        foregroundColor: MaterialStateProperty.all<Color>(
             const Color(0xFFFFFFFF)),
-        overlayColor: WidgetStateProperty.all<Color>(
+        overlayColor: MaterialStateProperty.all<Color>(
             const Color(0xFF29395B).withOpacity(0.05)),
-        elevation: WidgetStateProperty.all(0.0),
-        minimumSize: WidgetStateProperty.all<Size>(const Size(100, 40)),
-        textStyle: WidgetStateProperty.all<TextStyle>(const TextStyle(fontWeight: FontWeight.bold)),
+        elevation: MaterialStateProperty.all(0.0),
+        minimumSize: MaterialStateProperty.all<Size>(const Size(100, 40)),
+        textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(fontWeight: FontWeight.bold)),
       ),
       onPressed: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) => page),
@@ -93,17 +93,17 @@ class Helper{
     return OutlinedButton(
 
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all<Color>(
+        backgroundColor: MaterialStateProperty.all<Color>(
             activebuttoncolor),
-        foregroundColor: WidgetStateProperty.all<Color>(
+        foregroundColor: MaterialStateProperty.all<Color>(
             const Color(0xFF000000)),
-        overlayColor: WidgetStateProperty.all<Color>(
+        overlayColor: MaterialStateProperty.all<Color>(
             const Color(0xFF154a4a).withOpacity(0.05)),
-        elevation: WidgetStateProperty.all(10.0),
-        minimumSize: WidgetStateProperty.all<Size>(const Size(200, 50)),
-        textStyle: WidgetStateProperty.all<TextStyle>(const TextStyle(fontWeight: FontWeight.bold)),
+        elevation: MaterialStateProperty.all(10.0),
+        minimumSize: MaterialStateProperty.all<Size>(const Size(200, 50)),
+        textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle(fontWeight: FontWeight.bold)),
         shape:
-        WidgetStateProperty.resolveWith<OutlinedBorder>(
+        MaterialStateProperty.resolveWith<OutlinedBorder>(
                 (_) {
               return RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),

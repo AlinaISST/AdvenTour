@@ -1,4 +1,5 @@
 import 'package:explore_era/Screens/home_page.dart';
+import 'package:explore_era/Screens/sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:explore_era/Provider/app.provider.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,8 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
-        home: const MyHomePage(),
+        // home: const MyHomePage(),
+        home: const SignIn(),
       ),
     );
   }

@@ -1,5 +1,5 @@
+import 'package:explore_era/Screens/Packages/all_packages.dart';
 import 'package:explore_era/Screens/contact_us.dart';
-import 'package:explore_era/Screens/flight_fare_list.dart';
 import 'package:explore_era/Screens/home_page.dart';
 import 'package:explore_era/widgets/Helper.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Helper.appButton(
             context,
             "Packages & Fares",
-            const FlightFareList(),
+            const AllPackages(),
           ),
         ),
         Padding(

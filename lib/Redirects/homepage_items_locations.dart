@@ -42,7 +42,7 @@ class HomepageItemsLocations extends StatelessWidget {
                 context,
                 "Indonesia",
                 "Bali",
-                "assets/images/balii.png",
+                "assets/images/bali.png",
               ),
               buildMaterial(
                 context,

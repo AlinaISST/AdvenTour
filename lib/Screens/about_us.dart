@@ -13,9 +13,9 @@ class AboutUs extends StatelessWidget {
       body: Center(
         child: ListView(padding: const EdgeInsets.all(20.0), children: <Widget>[
           const SizedBox(height: 10),
-          Image.asset("assets/images/color-text-logo.png",
-              width: isSmallScreen ? 100 : 200,
-              height: isSmallScreen ? 100 : 200),
+          // Image.asset("assets/images/color-text-logo.png",
+          //     width: isSmallScreen ? 100 : 200,
+          //     height: isSmallScreen ? 100 : 200),
           const SizedBox(
             height: 20,
           ),

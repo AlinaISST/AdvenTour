@@ -1,8 +1,7 @@
 import 'package:explore_era/Notifier/user.notifier.dart';
-import 'package:explore_era/Screens/home_page.dart';
+import 'package:explore_era/Screens/contact_us.dart';
 import 'package:explore_era/Screens/sign_in.dart';
-import 'package:explore_era/Screens/ticket_booking.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:explore_era/Screens/ticket_scheduling.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -103,7 +102,7 @@ class DrawerScreen extends StatelessWidget {
             ),
 
             title: const Text(
-              'Ticket Booking',
+              'Ticket Scheduling',
               style: TextStyle(
                 shadows: [
                   BoxShadow(
@@ -118,8 +117,8 @@ class DrawerScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                CupertinoPageRoute(
-                  builder: (context) => const TicketBooking(),
+                MaterialPageRoute(
+                  builder: (context) => const TicketScheduling(),
                 ),
               );
             },
@@ -140,36 +139,7 @@ class DrawerScreen extends StatelessWidget {
               ],
             ),
             title: const Text(
-              'Messages',
-              style: TextStyle(
-                shadows: [
-                  BoxShadow(
-                    color: Colors.black38,
-                    blurRadius: 1.0,
-                    spreadRadius: 10.0,
-                    blurStyle: BlurStyle.outer,
-                  ),
-                ],
-              ),
-            ),
-            onTap: () {},
-          ),
-          ListTile(
-            dense: true,
-            leading: const Icon(
-              Icons.settings,
-              color: Colors.black54,
-              shadows: [
-                BoxShadow(
-                  color: Colors.black38,
-                  blurRadius: 1.0,
-                  spreadRadius: 10.0,
-                  blurStyle: BlurStyle.outer,
-                ),
-              ],
-            ),
-            title: const Text(
-              'Settings',
+              'Notifications',
               style: TextStyle(
                 shadows: [
                   BoxShadow(
@@ -213,45 +183,13 @@ class DrawerScreen extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                CupertinoPageRoute(
+                MaterialPageRoute(
                   builder: (context) => const SignIn(),
                 ),
               );
             },
           ),
           const Divider(),
-          ListTile(
-            dense: true,
-            leading: const Icon(
-              Icons.info_outline_rounded,
-              color: Colors.black54,
-              shadows: [
-                BoxShadow(
-                  color: Colors.black38,
-                  blurRadius: 1.0,
-                  spreadRadius: 10.0,
-                  blurStyle: BlurStyle.outer,
-                ),
-              ],
-            ),
-            title: const Text(
-              'About Us',
-              style: TextStyle(
-                shadows: [
-                  BoxShadow(
-                    color: Colors.black38,
-                    blurRadius: 1.0,
-                    spreadRadius: 10.0,
-                    blurStyle: BlurStyle.outer,
-                  ),
-                ],
-              ),
-            ),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()));
-            },
-          ),
           ListTile(
             dense: true,
             leading: const Icon(
@@ -280,8 +218,12 @@ class DrawerScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ContactUsPage(),
+                ),
+              );
             },
           ),
           ListTile(

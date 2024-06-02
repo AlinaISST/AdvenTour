@@ -1,10 +1,6 @@
-import 'package:explore_era/Screens/register.dart';
 import 'package:explore_era/Widgets/custom_scaffold.dart';
-import 'package:explore_era/widgets/Helper.dart';
 import 'package:flutter/material.dart';
 import 'package:explore_era/Widgets/newsletter_card.dart';
-import 'package:explore_era/Redirects/home_page_items.dart';
-import 'package:explore_era/Redirects/homepage_items_locations.dart';
 import 'package:explore_era/Redirects/homepage_items_packages.dart';
 
 class MyHomePage extends StatefulWidget {

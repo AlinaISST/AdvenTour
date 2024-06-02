@@ -1,6 +1,3 @@
-import 'package:explore_era/Screens/home_page.dart';
-import 'package:explore_era/Screens/ticket_booking.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomepageItems extends StatelessWidget {

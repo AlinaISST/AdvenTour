@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:explore_era/Model/user.dart';
 import 'package:explore_era/Screens/home_page.dart';
-import 'package:explore_era/Screens/ticket_booking.dart';
 import 'package:provider/provider.dart';
 import 'package:explore_era/Notifier/user.notifier.dart';
 import 'package:flutter/cupertino.dart';
@@ -234,7 +233,7 @@ class __FormContentState extends State<_FormContent> {
 
                               Navigator.pushReplacement(
                                 context,
-                                CupertinoPageRoute(
+                                MaterialPageRoute(
                                   // builder: (context) => const Home(),
                                   builder: (context) => const MyHomePage(),
                                 ),
@@ -281,7 +280,7 @@ class __FormContentState extends State<_FormContent> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        CupertinoPageRoute(
+                        MaterialPageRoute(
                           builder: (context) => const Register(),
                         ),
                       );

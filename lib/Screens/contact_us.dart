@@ -1,3 +1,4 @@
+import 'package:explore_era/Widgets/appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +9,10 @@ class ContactUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: Colors.white,
+      appBar: BaseAppBar(
         title: const Text("Contact Us"),
+        appBar: AppBar(),
       ),
       body: Center(
         child: Container(
@@ -54,9 +57,12 @@ class _ContactUsFormState extends State<ContactUsForm> {
             'Your message has been received!',
           ),
           actions: <Widget>[
-            TextButton(onPressed: (){
-              Navigator.pop(context);
-            }, child: const Text('OK'),),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('OK'),
+            ),
           ],
         ),
       );
@@ -73,6 +79,14 @@ class _ContactUsFormState extends State<ContactUsForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          const Text(
+            "Contact Us Form",
+            style: TextStyle(
+              fontWeight: FontWeight.w900,
+              fontSize: 35,
+            ),
+          ),
+          const SizedBox(height: 25,),
           TextFormField(
             controller: _nameController,
             decoration: const InputDecoration(
@@ -132,7 +146,7 @@ class _ContactUsFormState extends State<ContactUsForm> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 24.0, vertical: 12.0), // Padding
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0), // Rounded corners
+                  borderRadius: BorderRadius.circular(10.0), // Rounded corners
                 ),
                 elevation: 5.0, // Elevation
               ),

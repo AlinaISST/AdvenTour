@@ -1,5 +1,4 @@
-import 'package:explore_era/Screens/flight_fare_list.dart';
-import 'package:explore_era/Screens/home_page.dart';
+import 'package:explore_era/Screens/Packages/all_packages.dart';
 import 'package:flutter/material.dart';
 
 class HomepageItemsPackages extends StatelessWidget {
@@ -118,7 +117,7 @@ class HomepageItemsPackages extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const FlightFareList(),
+                  builder: (context) => const AllPackages(),
                 ),
               );
             },
